@@ -1,14 +1,16 @@
 {
   "name": "mymovies-client",
   "version": "1.0.0",
-  "description": "",
+  "description": "client-side app for myMoviesDB",
   "main": "src/index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel src/index.html"
   },
   "author": "ClaraPapaya",
   "license": "ISC",
   "dependencies": {
+    "parcel-bundler": "^1.12.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },

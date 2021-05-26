@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.scss"],"names":[],"mappings":"AAEC;EACC,OAHM","file":"src.78399e21.css","sourceRoot":"../src","sourcesContent":["$color: steelblue\n\n;my-movies {\n  color: $color;\n}"]}
