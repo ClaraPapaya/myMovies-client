@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+//import '/registration-view.scss';
 
 export function RegistrationView(props) {
   const [username, setUsername] = useState('');
@@ -9,6 +10,7 @@ export function RegistrationView(props) {
   const handleSubmit = () => {
     e.preventDefaut();
     console.log(username, password, email, birthday);
+    props.onRegistration(newUser);
   };
 
   return (
@@ -29,6 +31,14 @@ export function RegistrationView(props) {
         Birthday:
         <input type="date" value={birthday} onChange={e => setBirthday(e.target.value)} />
       </label>
+      <button type="submit" onClick={handleSubmit}>Submit</button>
     </form>
-  )
+  );
+}
+
+RegistrationView.propTypes = {
+  username: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  birthday: PropTypes.date
 }

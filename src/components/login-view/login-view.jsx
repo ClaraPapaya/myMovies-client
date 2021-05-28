@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+//import '/login-view.scss';
 
 export function LoginView(props) {
   const [username, setUsername] = useState('');
@@ -7,8 +8,6 @@ export function LoginView(props) {
   const handleSubmit = () => {
     e.preventDefault();
     console.log(username, password);
-    /* Send a request to the server for authentication */
-    /* then call props.onLoggedIn(username) */
     props.onLoggednIn(username);
   };
 
@@ -25,4 +24,9 @@ export function LoginView(props) {
       <button type="submit" onClick={handleSubmit}>Submit</button>
     </form>
   );
+}
+
+LoginView.PropTypes = {
+  username: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired
 }
