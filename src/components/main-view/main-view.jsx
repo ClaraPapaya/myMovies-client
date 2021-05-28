@@ -1,14 +1,18 @@
 import axios from 'axios';
 import React from 'react';
+import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
+import { RegistrationView } from '../registration-view/registration-view';
 
 export class MainView extends React.Component {
   constructor() {
     super();
     this.state = {
       movies: [],
-      selectedMovie: null
+      selectedMovie: null,
+      user: null,
+      register: null
     }
   }
 
@@ -30,8 +34,22 @@ export class MainView extends React.Component {
     });
   }
 
+  onLoggedIn(user) {
+    this.setState({
+      user
+    });
+  }
+
+  onRegistration(register) {
+    this.setState({
+      register
+    });
+  }
+
   render() {
-    const { movies, selectedMovie } = this.state;
+    const { movies, user, selectedMovie } = this.state;
+    if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+    if (!register) return <RegistrationView onRegistration={register => this.onRegistration(register)} />;
     if (movies.length === 0)
       return <div className="main-view" />;
     return (
