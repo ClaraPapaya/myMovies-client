@@ -29678,7 +29678,9 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
   _createClass(MovieView, [{
     key: "render",
     value: function render() {
-      var movie = this.props.movie;
+      var _this$props = this.props,
+          movie = _this$props.movie,
+          onBackClick = _this$props.onBackClick;
       return /*#__PURE__*/_react.default.createElement("div", {
         className: "movie-view"
       }, /*#__PURE__*/_react.default.createElement("div", {
@@ -29697,7 +29699,19 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
         className: "label"
       }, "Description:"), /*#__PURE__*/_react.default.createElement("span", {
         className: "value"
-      }, movie.Description)), /*#__PURE__*/_react.default.createElement("button", {
+      }, movie.Description)), /*#__PURE__*/_react.default.createElement("div", {
+        className: "movie-director"
+      }, /*#__PURE__*/_react.default.createElement("span", {
+        className: "label"
+      }, "Director:"), /*#__PURE__*/_react.default.createElement("span", {
+        className: "value"
+      }, movie.Director)), /*#__PURE__*/_react.default.createElement("div", {
+        className: "movie-genre"
+      }, /*#__PURE__*/_react.default.createElement("span", {
+        className: "label"
+      }, "Genre:"), /*#__PURE__*/_react.default.createElement("span", {
+        className: "value"
+      }, movie.Genre)), /*#__PURE__*/_react.default.createElement("button", {
         onClick: function onClick() {
           onBackClick(null);
         }
@@ -29761,19 +29775,25 @@ var MainView = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       movies: [{
         _id: 1,
-        Title: 'The Dark Knight',
-        Description: 'desc1...',
-        ImagePath: 'https://www.imdb.com/title/tt0468569/mediaviewer/rm4023877632/?ref_=ex...'
+        Title: ' The Dark Knight',
+        Description: ' When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.',
+        ImagePath: 'https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_UX182_CR0,0,182,268_AL_.jpg',
+        Director: ' Christopher Nolan',
+        Genre: ' Action'
       }, {
         _id: 2,
-        Title: 'In Bruges',
-        Description: 'desc2...',
-        ImagePath: '...'
+        Title: ' In Bruges',
+        Description: ' Guilt-stricken after a job gone wrong, hitman Ray and his partner await orders from their ruthless boss in Bruges, Belgium, the last place in the world Ray wants to be at.',
+        ImagePath: 'https://images-na.ssl-images-amazon.com/images/I/51cY5wrSoDL.jpg',
+        Director: ' Martin McDonagh',
+        Genre: ' Comedy'
       }, {
         _id: 3,
-        Title: 'The Intouchables',
-        Description: 'desc3...',
-        ImagePath: '...'
+        Title: ' The Intouchables',
+        Description: ' After he becomes a quadriplegic from a paragliding accident, an aristocrat hires a young man from the projects to be his caregiver and an unlikely friendship unfolds.',
+        ImagePath: 'https://images-na.ssl-images-amazon.com/images/I/81G5tvlZehL._SY679_.jpg',
+        Director: ' Olivier Nakache',
+        Genre: ' Comedy'
       }],
       selectedMovie: null
     };
@@ -29806,12 +29826,12 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       }, selectedMovie ? /*#__PURE__*/_react.default.createElement(_movieView.MovieView, {
         movie: selectedMovie,
         onBackClick: function onBackClick(newSelectedMovie) {
-          _this2.setSelectedMovie(newSelevtedMovie);
+          _this2.setSelectedMovie(newSelectedMovie);
         }
       }) : movies.map(function (movie) {
         return /*#__PURE__*/_react.default.createElement(_movieCard.MovieCard, {
           key: movie._id,
-          movieData: movie,
+          movie: movie,
           onMovieClick: function onMovieClick(movie) {
             _this2.setSelectedMovie(movie);
           }
@@ -29985,7 +30005,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51653" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52712" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
