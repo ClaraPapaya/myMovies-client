@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './movie-view.scss';
+// Bootstrap components
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
 
 export class MovieView extends React.Component {
 
@@ -26,13 +30,13 @@ export class MovieView extends React.Component {
         <span className="label">Genre:</span>
         <span className="value">{movie.Genre.Name}</span>
       </div>
-      <button onClick={() => { onBackClick(null); }}>Back</button>
+      <Button variant='info' onClick={() => { onBackClick(null); }}>Back</Button>
     </div>
   };
 }
 
 // PropTypes to validate data type
-MovieView.PropTypes = {
+MovieView.propTypes = {
   Title: PropTypes.string,
   Description: PropTypes.string,
   Director: PropTypes.string,
