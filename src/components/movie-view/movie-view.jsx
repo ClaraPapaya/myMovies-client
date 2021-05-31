@@ -1,5 +1,6 @@
 import React from 'react';
-//import '/movie-view';
+import PropTypes from 'prop-types';
+import './movie-view';
 
 export class MovieView extends React.Component {
 
@@ -30,6 +31,7 @@ export class MovieView extends React.Component {
   };
 }
 
+// PropTypes to validate data type
 MovieView.PropTypes = {
   Title: PropType.string,
   Description: PropTypes.string,

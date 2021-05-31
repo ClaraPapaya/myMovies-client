@@ -1,5 +1,7 @@
+// Function component with React Hook
 import React, { useState } from 'react';
-//import '/registration-view.scss';
+import PropTypes from 'prop-types';
+import './registration-view.scss';
 
 export function RegistrationView(props) {
   const [username, setUsername] = useState('');
@@ -36,6 +38,7 @@ export function RegistrationView(props) {
   );
 }
 
+// PropTypes to validate data type input
 RegistrationView.propTypes = {
   username: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,

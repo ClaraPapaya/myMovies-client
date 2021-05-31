@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React from 'react';
-//import "/main-view.scss";
+import './main-view.scss';
 import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
@@ -35,12 +35,14 @@ export class MainView extends React.Component {
     });
   }
 
+  // To connect to login-view function component
   onLoggedIn(user) {
     this.setState({
       user
     });
   }
 
+  // To connect to registration-view function component
   onRegistration(newUser) {
     this.setState({
       newUser
