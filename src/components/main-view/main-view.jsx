@@ -10,6 +10,7 @@ import './main-view.scss';
 // Bootstrap components
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
 
 
 export class MainView extends React.Component {
@@ -24,13 +25,26 @@ export class MainView extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('https://allmymovies.herokuapp.com/movies')
+    let accessToken = localStorage.getItem('token');
+    if (accessToken !== null) {
+      this.setState({
+        user: localStorage.getItem('user')
+      });
+      this.getMovies(accessToken);
+    }
+  }
+
+  getMovies(token) {
+    axios.get('https://allmymovies.herokuapp.com/movies', {
+      headers: { Authorization: `Bearer ${token}` }
+    })
       .then(response => {
+        // Assign the result to the state
         this.setState({
           movies: response.data
         });
       })
-      .catch(error => {
+      .catch(function (error) {
         console.log(error);
       });
   }
@@ -42,9 +56,22 @@ export class MainView extends React.Component {
   }
 
   // To connect to login-view function component
-  onLoggedIn(user) {
+  onLoggedIn(authData) {
+    console.log(authData);
     this.setState({
-      user
+      user: authData.user.Username
+    });
+    localStorage.setItem('token', authData.token);
+    localStorage.setItem('user', authData.user.Username);
+    this.getMovies(authData.token);
+  }
+
+  // have to use it in render()
+  onLoggedOut() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.setState({
+      user: null
     });
   }
 
@@ -87,6 +114,8 @@ export class MainView extends React.Component {
             </Col>
           ))
         }
+        <Button variant='dark' onClick={() => { this.onLoggedOut() }}>Logout
+        </Button>
       </Row>
     );
   }

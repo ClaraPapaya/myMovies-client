@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import './registration-view.scss';
 // Bootstrap components
 import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 export function RegistrationView(props) {
   const [username, setUsername] = useState('');
@@ -50,4 +51,4 @@ RegistrationView.propTypes = {
   password: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   birthday: PropTypes.date
-}
+};

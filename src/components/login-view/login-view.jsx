@@ -1,5 +1,6 @@
 // Function component with React Hook
 import React, { useState } from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import './login-view.scss';
 // Bootstrap components
@@ -14,7 +15,17 @@ export function LoginView(props) {
     e.preventDefault();
     console.log(username, password);
     // Send a request to the server for authentication, then call props.onLoggedIn(username)
-    props.onLoggedIn(username);
+    axios.post('https://allmymovies.herokuapp.com/login', {
+      Username: username,
+      Password: password
+    })
+      .then(response => {
+        const data = response.data;
+        props.onLoggedIn(data);
+      })
+      .catch(e => {
+        console.log('no such user')
+      });
   };
 
   return (
