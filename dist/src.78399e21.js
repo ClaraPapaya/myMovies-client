@@ -37558,8 +37558,6 @@ require("./director-view.scss");
 
 var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
 
-var _Card = _interopRequireDefault(require("react-bootstrap/Card"));
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -37633,7 +37631,7 @@ DirectorView.propTypes = {
   Name: _propTypes.default.string,
   Biography: _propTypes.default.string
 };
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","./director-view.scss":"components/director-view/director-view.scss","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js"}],"components/genre-view/genre-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","./director-view.scss":"components/director-view/director-view.scss","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js"}],"components/genre-view/genre-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -37653,8 +37651,6 @@ var _propTypes = _interopRequireDefault(require("prop-types"));
 require("./genre-view.scss");
 
 var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
-
-var _Card = _interopRequireDefault(require("react-bootstrap/Card"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -37729,7 +37725,7 @@ GenreView.propTypes = {
   Name: _propTypes.default.string,
   Description: _propTypes.default.string
 };
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","./genre-view.scss":"components/genre-view/genre-view.scss","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js"}],"components/registration-view/registration-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","./genre-view.scss":"components/genre-view/genre-view.scss","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js"}],"components/registration-view/registration-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -38098,7 +38094,15 @@ var MainView = /*#__PURE__*/function (_React$Component) {
             onBackClick: function onBackClick() {
               return history.goBack();
             }
-          }));
+          }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+            to: "/directors/".concat(movie.Director.Name)
+          }, /*#__PURE__*/_react.default.createElement(_Button.default, {
+            variant: "link"
+          }, "Director")), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+            to: "/genres/".concat(movie.Genre.Name)
+          }, /*#__PURE__*/_react.default.createElement(_Button.default, {
+            variant: "link"
+          }, "Genre")));
         }
       }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
         path: "/directors/:name",

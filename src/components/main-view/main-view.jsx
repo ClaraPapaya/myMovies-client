@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
@@ -109,6 +110,12 @@ export class MainView extends React.Component {
             return (
               <Col md={8}>
                 <MovieView movie={movies.find(m => m._id === match.params.movieId)} onBackClick={() => history.goBack()} />
+                <Link to={`/directors/${movie.Director.Name}`}>
+                  <Button variant='link'>Director</Button>
+                </Link>
+                <Link to={`/genres/${movie.Genre.Name}`}>
+                  <Button variant='link'>Genre</Button>
+                </Link>
               </Col>
             )
           }} />
