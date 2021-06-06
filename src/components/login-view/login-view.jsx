@@ -21,7 +21,9 @@ export function LoginView(props) {
     })
       .then(response => {
         const data = response.data;
+        console.log('data', data);
         props.onLoggedIn(data);
+        window.open('/');
       })
       .catch(e => {
         console.log('no such user')
@@ -48,6 +50,9 @@ export function LoginView(props) {
 
 // PropTypes to validate data type input
 LoginView.propTypes = {
-  username: PropTypes.string.isRequired,
-  password: PropTypes.string.isRequired
-}
+  user: PropTypes.shape({
+    username: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired
+  }),
+  onLoggedIn: PropTypes.func
+};
