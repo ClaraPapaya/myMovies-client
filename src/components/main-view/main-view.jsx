@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 import { LoginView } from '../login-view/login-view';
+import { NavbarView } from '../navbar-view/navbar-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { DirectorView } from '../director-view/director-view';
@@ -67,14 +68,14 @@ export class MainView extends React.Component {
     this.getMovies(authData.token);
   }
 
-  // May be used in render(), parts missing
-  // onLoggedOut() {
-  //   localStorage.removeItem('token');
-  //   localStorage.removeItem('user');
-  //   this.setState({
-  //     user: null
-  //   });
-  // }
+  // to enable user to logout and go back to welcome page
+  onLoggedOut() {
+    console.log('logout successful');
+    this.setState({
+      user: null
+    });
+    localStorage.clear();
+  }
 
   render() {
     const { movies, user } = this.state;
@@ -106,9 +107,12 @@ export class MainView extends React.Component {
 
           <Route path='/movies/:movieId' render={({ match, history }) => {
             if (!user) return
-            <Col md={6}>
-              <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
-            </Col>
+            <Row>
+              <NavbarView />
+              <Col md={6}>
+                <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+              </Col>
+            </Row>
             if (movies.length === 0) return <div className='main-view' />;
             return (
               <Col md={8}>
