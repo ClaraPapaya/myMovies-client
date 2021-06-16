@@ -37410,12 +37410,12 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
       var movie = this.props.movie;
       return /*#__PURE__*/_react.default.createElement(_Card.default, null, /*#__PURE__*/_react.default.createElement(_Card.default.Img, {
         variant: "top",
-        src: movie.Image.Path
+        src: movie.ImagePath
       }), /*#__PURE__*/_react.default.createElement(_Card.default.Body, null, /*#__PURE__*/_react.default.createElement(_Card.default.Title, null, movie.Title), /*#__PURE__*/_react.default.createElement(_Card.default.Text, null, movie.Description), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
         to: "/movies/".concat(movie._id)
-      }), /*#__PURE__*/_react.default.createElement(_Button.default, {
+      }, /*#__PURE__*/_react.default.createElement(_Button.default, {
         variant: "link"
-      }, "Open")));
+      }, "Open"))));
     }
   }]);
 
@@ -37427,8 +37427,7 @@ exports.MovieCard = MovieCard;
 MovieCard.propTypes = {
   movie: _propTypes.default.shape({
     Title: _propTypes.default.string
-  }).isRequired,
-  onMovieClick: _propTypes.default.func.isRequired
+  }).isRequired
 };
 },{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","./movie-card.scss":"components/movie-card/movie-card.scss","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js"}],"components/movie-view/movie-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
@@ -37446,6 +37445,8 @@ exports.MovieView = void 0;
 var _react = _interopRequireDefault(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
+
+var _reactRouterDom = require("react-router-dom");
 
 require("./movie-view.scss");
 
@@ -37514,14 +37515,16 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
         className: "movie-director"
       }, /*#__PURE__*/_react.default.createElement("span", {
         className: "label"
-      }, "Director:"), /*#__PURE__*/_react.default.createElement("span", {
-        className: "value"
+      }, "Director:"), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+        className: "value",
+        to: "/directors/".concat(movie.Director.Name)
       }, movie.Director.Name)), /*#__PURE__*/_react.default.createElement("div", {
         className: "movie-genre"
       }, /*#__PURE__*/_react.default.createElement("span", {
         className: "label"
-      }, "Genre:"), /*#__PURE__*/_react.default.createElement("span", {
-        className: "value"
+      }, "Genre:"), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+        className: "value",
+        to: "/genres/".concat(movie.Genre.Name)
       }, movie.Genre.Name)), /*#__PURE__*/_react.default.createElement(_Button.default, {
         variant: "info",
         onClick: function onClick() {
@@ -37542,7 +37545,7 @@ MovieView.propTypes = {
   Director: _propTypes.default.string,
   Genre: _propTypes.default.string
 };
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","./movie-view.scss":"components/movie-view/movie-view.scss","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js"}],"components/director-view/director-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./movie-view.scss":"components/movie-view/movie-view.scss","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js"}],"components/director-view/director-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -37610,13 +37613,13 @@ var DirectorView = /*#__PURE__*/function (_React$Component) {
         className: "director-name"
       }, /*#__PURE__*/_react.default.createElement("span", {
         className: "label"
-      }, "Name"), /*#__PURE__*/_react.default.createElement("span", {
+      }, "Name:"), /*#__PURE__*/_react.default.createElement("span", {
         className: "value"
       }, director.Name)), /*#__PURE__*/_react.default.createElement("div", {
         className: "director-bio"
       }, /*#__PURE__*/_react.default.createElement("span", {
         className: "label"
-      }, "Biography"), /*#__PURE__*/_react.default.createElement("span", {
+      }, "Biography:"), /*#__PURE__*/_react.default.createElement("span", {
         className: "value"
       }, director.Bio)), /*#__PURE__*/_react.default.createElement(_Button.default, {
         variant: "info",
@@ -37704,13 +37707,13 @@ var GenreView = /*#__PURE__*/function (_React$Component) {
         className: "genre-name"
       }, /*#__PURE__*/_react.default.createElement("span", {
         className: "label"
-      }, "Name"), /*#__PURE__*/_react.default.createElement("span", {
+      }, "Name:"), /*#__PURE__*/_react.default.createElement("span", {
         className: "value"
       }, genre.Name)), /*#__PURE__*/_react.default.createElement("div", {
         className: "genre-description"
       }, /*#__PURE__*/_react.default.createElement("span", {
         className: "label"
-      }, "Description"), /*#__PURE__*/_react.default.createElement("span", {
+      }, "Description:"), /*#__PURE__*/_react.default.createElement("span", {
         className: "value"
       }, genre.Description)), /*#__PURE__*/_react.default.createElement(_Button.default, {
         variant: "info",
@@ -38020,13 +38023,13 @@ var MainView = /*#__PURE__*/function (_React$Component) {
     value: function onLoggedIn(authData) {
       console.log(authData);
       this.setState({
-        user: authData.userObj.Username
+        user: authData.user.Username
       });
       localStorage.setItem('token', authData.token);
-      localStorage.setItem('user', authData.userObj.Username);
-      localStorage.setItem('email', authData.userObj.Email);
-      localStorage.setItem('birthday', authData.userObj.Birthday);
-      localStorage.setItem('favoriteMovies', auth.Data.userObj.FavoriteMovies);
+      localStorage.setItem('user', authData.user.Username);
+      localStorage.setItem('email', authData.user.Email);
+      localStorage.setItem('birthday', authData.user.Birthday);
+      localStorage.setItem('favoriteMovies', auth.Data.user.FavoriteMovies);
       this.getMovies(authData.token);
     } // May be used in render(), parts missing
     // onLoggedOut() {
@@ -38074,7 +38077,9 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           if (user) return /*#__PURE__*/_react.default.createElement(_reactRouterDom.Redirect, {
             to: "/"
           });
-          return /*#__PURE__*/_react.default.createElement(_Col.default, null, /*#__PURE__*/_react.default.createElement(_registrationView.RegistrationView, null));
+          return /*#__PURE__*/_react.default.createElement(_Col.default, {
+            md: 6
+          }, /*#__PURE__*/_react.default.createElement(_registrationView.RegistrationView, null));
         }
       }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
         path: "/movies/:movieId",
@@ -38084,7 +38089,9 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           if (!user) return;
 
           /*#__PURE__*/
-          _react.default.createElement(_Col.default, null, /*#__PURE__*/_react.default.createElement(_loginView.LoginView, {
+          _react.default.createElement(_Col.default, {
+            md: 6
+          }, /*#__PURE__*/_react.default.createElement(_loginView.LoginView, {
             onLoggedIn: function onLoggedIn(user) {
               return _this3.onLoggedIn(user);
             }
@@ -38102,15 +38109,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
             onBackClick: function onBackClick() {
               return history.goBack();
             }
-          }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-            to: "/directors/".concat(movie.Director.Name)
-          }, /*#__PURE__*/_react.default.createElement(_Button.default, {
-            variant: "link"
-          }, "Director")), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-            to: "/genres/".concat(movie.Genre.Name)
-          }, /*#__PURE__*/_react.default.createElement(_Button.default, {
-            variant: "link"
-          }, "Genre")));
+          }));
         }
       }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
         path: "/directors/:name",
@@ -38272,7 +38271,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50424" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53221" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

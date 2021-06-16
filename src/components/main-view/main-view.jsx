@@ -56,14 +56,14 @@ export class MainView extends React.Component {
   onLoggedIn(authData) {
     console.log(authData);
     this.setState({
-      user: authData.userObj.Username
+      user: authData.user.Username
     });
 
     localStorage.setItem('token', authData.token);
-    localStorage.setItem('user', authData.userObj.Username);
-    localStorage.setItem('email', authData.userObj.Email);
-    localStorage.setItem('birthday', authData.userObj.Birthday);
-    localStorage.setItem('favoriteMovies', auth.Data.userObj.FavoriteMovies);
+    localStorage.setItem('user', authData.user.Username);
+    localStorage.setItem('email', authData.user.Email);
+    localStorage.setItem('birthday', authData.user.Birthday);
+    localStorage.setItem('favoriteMovies', auth.Data.user.FavoriteMovies);
     this.getMovies(authData.token);
   }
 
@@ -98,7 +98,7 @@ export class MainView extends React.Component {
           <Route path='/register' render={() => {
             if (user) return <Redirect to='/' />
             return (
-              <Col>
+              <Col md={6}>
                 <RegistrationView />
               </Col>
             )
@@ -106,19 +106,13 @@ export class MainView extends React.Component {
 
           <Route path='/movies/:movieId' render={({ match, history }) => {
             if (!user) return
-            <Col>
+            <Col md={6}>
               <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
             </Col>
             if (movies.length === 0) return <div className='main-view' />;
             return (
               <Col md={8}>
                 <MovieView movie={movies.find(m => m._id === match.params.movieId)} onBackClick={() => history.goBack()} />
-                <Link to={`/directors/${movie.Director.Name}`}>
-                  <Button variant='link'>Director</Button>
-                </Link>
-                <Link to={`/genres/${movie.Genre.Name}`}>
-                  <Button variant='link'>Genre</Button>
-                </Link>
               </Col>
             )
           }} />
