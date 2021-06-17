@@ -22,7 +22,29 @@ export class NavbarView extends React.Component {
 
   render() {
     return (
-      <Button onClick={() => logOut()} variant='outline-light'>Logout</Button>
+      <Navbar bg='light' expand='lg' fixed='top'>
+        <Navbar.Brand href=''>All My Movies</Navbar.Brand>
+        <Navbar.Toggle area-controls='responsive-navbar-nav' />
+        <Navbar.Collapse id='responsive-navbar-nav'>
+          <Nav activeKey='/' onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}>
+            <Nav.Item>
+              <Nav.Link href='/'>Home</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link href='/users/${user}'>Profile</Nav.Link>
+            </Nav.Item>
+          </Nav>
+          <Form inline>
+            <Form.Control type='text' placeholder='Search' className='mr-sm-2' />
+            <Button type='submit'>Submit</Button>
+          </Form>
+          <Navbar.Text>Signed in as: <a href='#login'>Username</a></Navbar.Text>
+          <Button onClick={() => logOut()} variant='light'>Logout</Button>
+        </Navbar.Collapse>
+      </Navbar>
+
     )
   }
 }
+
+export default NavbarView;

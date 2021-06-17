@@ -86,13 +86,17 @@ export class MainView extends React.Component {
           <Route exact path='/' render={() => {
             if (!user) return (
               <Col>
+                <NavbarView />
                 <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
               </Col>)
             if (movies.length === 0) return <div className='main-view' />;
             return movies.map(m => (
-              <Col md={3} key={m._id}>
-                <MovieCard movie={m} />
-              </Col>
+              <div>
+                <NavbarView />
+                <Col md={4} key={m._id}>
+                  <MovieCard movie={m} />
+                </Col>
+              </div>
             ))
           }} />
 
@@ -108,7 +112,6 @@ export class MainView extends React.Component {
           <Route path='/movies/:movieId' render={({ match, history }) => {
             if (!user) return
             <Row>
-              <NavbarView />
               <Col md={6}>
                 <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
               </Col>
@@ -144,9 +147,6 @@ export class MainView extends React.Component {
               </Col>
             )
           }} />
-
-          {/* <Button variant='dark' type='submit' onClick={() => { this.onLoggedOut() }}>Logout
-          </Button> */}
         </Row>
       </Router>
     );

@@ -39869,7 +39869,7 @@ exports.default = _default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.NavbarView = void 0;
+exports.default = exports.NavbarView = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
@@ -39930,12 +39930,41 @@ var NavbarView = /*#__PURE__*/function (_React$Component) {
   _createClass(NavbarView, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/_react.default.createElement(_Button.default, {
+      return /*#__PURE__*/_react.default.createElement(_Navbar.default, {
+        bg: "light",
+        expand: "lg",
+        fixed: "top"
+      }, /*#__PURE__*/_react.default.createElement(_Navbar.default.Brand, {
+        href: ""
+      }, "All My Movies"), /*#__PURE__*/_react.default.createElement(_Navbar.default.Toggle, {
+        "area-controls": "responsive-navbar-nav"
+      }), /*#__PURE__*/_react.default.createElement(_Navbar.default.Collapse, {
+        id: "responsive-navbar-nav"
+      }, /*#__PURE__*/_react.default.createElement(_Nav.default, {
+        activeKey: "/",
+        onSelect: function onSelect(selectedKey) {
+          return alert("selected ".concat(selectedKey));
+        }
+      }, /*#__PURE__*/_react.default.createElement(_Nav.default.Item, null, /*#__PURE__*/_react.default.createElement(_Nav.default.Link, {
+        href: "/"
+      }, "Home")), /*#__PURE__*/_react.default.createElement(_Nav.default.Item, null, /*#__PURE__*/_react.default.createElement(_Nav.default.Link, {
+        href: "/users/${user}"
+      }, "Profile"))), /*#__PURE__*/_react.default.createElement(_Form.default, {
+        inline: true
+      }, /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
+        type: "text",
+        placeholder: "Search",
+        className: "mr-sm-2"
+      }), /*#__PURE__*/_react.default.createElement(_Button.default, {
+        type: "submit"
+      }, "Submit")), /*#__PURE__*/_react.default.createElement(_Navbar.default.Text, null, "Signed in as: ", /*#__PURE__*/_react.default.createElement("a", {
+        href: "#login"
+      }, "Username")), /*#__PURE__*/_react.default.createElement(_Button.default, {
         onClick: function onClick() {
           return logOut();
         },
-        variant: "outline-light"
-      }, "Logout");
+        variant: "light"
+      }, "Logout")));
     }
   }]);
 
@@ -39943,6 +39972,8 @@ var NavbarView = /*#__PURE__*/function (_React$Component) {
 }(_react.default.Component);
 
 exports.NavbarView = NavbarView;
+var _default = NavbarView;
+exports.default = _default;
 },{"react":"../node_modules/react/index.js","react-bootstrap/Navbar":"../node_modules/react-bootstrap/esm/Navbar.js","react-bootstrap/Nav":"../node_modules/react-bootstrap/esm/Nav.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js"}],"components/movie-card/movie-card.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
@@ -40212,6 +40243,8 @@ var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _reactRouterDom = require("react-router-dom");
 
+var _navbarView = require("../navbar-view/navbar-view");
+
 require("./movie-view.scss");
 
 var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
@@ -40259,7 +40292,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
           onBackClick = _this$props.onBackClick;
       return /*#__PURE__*/_react.default.createElement("div", {
         className: "movie-view"
-      }, /*#__PURE__*/_react.default.createElement("div", {
+      }, /*#__PURE__*/_react.default.createElement(_navbarView.NavbarView, null), /*#__PURE__*/_react.default.createElement("div", {
         className: "movie-poster"
       }, /*#__PURE__*/_react.default.createElement("img", {
         src: movie.ImagePath
@@ -40309,7 +40342,7 @@ MovieView.propTypes = {
   Director: _propTypes.default.string,
   Genre: _propTypes.default.string
 };
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./movie-view.scss":"components/movie-view/movie-view.scss","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js"}],"components/director-view/director-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../navbar-view/navbar-view":"components/navbar-view/navbar-view.jsx","./movie-view.scss":"components/movie-view/movie-view.scss","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js"}],"components/director-view/director-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -40325,6 +40358,8 @@ exports.DirectorView = void 0;
 var _react = _interopRequireDefault(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
+
+var _navbarView = require("../navbar-view/navbar-view");
 
 require("./director-view.scss");
 
@@ -40371,7 +40406,7 @@ var DirectorView = /*#__PURE__*/function (_React$Component) {
       var _this$props = this.props,
           director = _this$props.director,
           onBackClick = _this$props.onBackClick;
-      return /*#__PURE__*/_react.default.createElement("div", {
+      return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_navbarView.NavbarView, null), /*#__PURE__*/_react.default.createElement("div", {
         className: "director-view"
       }, /*#__PURE__*/_react.default.createElement("div", {
         className: "director-name"
@@ -40390,7 +40425,7 @@ var DirectorView = /*#__PURE__*/function (_React$Component) {
         onClick: function onClick() {
           onBackClick(null);
         }
-      }, "Back"));
+      }, "Back")));
     }
   }]);
 
@@ -40403,7 +40438,7 @@ DirectorView.propTypes = {
   Name: _propTypes.default.string,
   Biography: _propTypes.default.string
 };
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","./director-view.scss":"components/director-view/director-view.scss","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js"}],"components/genre-view/genre-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","../navbar-view/navbar-view":"components/navbar-view/navbar-view.jsx","./director-view.scss":"components/director-view/director-view.scss","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js"}],"components/genre-view/genre-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -40419,6 +40454,8 @@ exports.GenreView = void 0;
 var _react = _interopRequireDefault(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
+
+var _navbarView = require("../navbar-view/navbar-view");
 
 require("./genre-view.scss");
 
@@ -40465,7 +40502,7 @@ var GenreView = /*#__PURE__*/function (_React$Component) {
       var _this$props = this.props,
           genre = _this$props.genre,
           onBackClick = _this$props.onBackClick;
-      return /*#__PURE__*/_react.default.createElement("div", {
+      return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_navbarView.NavbarView, null), /*#__PURE__*/_react.default.createElement("div", {
         className: "genre-view"
       }, /*#__PURE__*/_react.default.createElement("div", {
         className: "genre-name"
@@ -40484,7 +40521,7 @@ var GenreView = /*#__PURE__*/function (_React$Component) {
         onClick: function onClick() {
           onBackClick(null);
         }
-      }, "Back"));
+      }, "Back")));
     }
   }]);
 
@@ -40497,7 +40534,7 @@ GenreView.propTypes = {
   Name: _propTypes.default.string,
   Description: _propTypes.default.string
 };
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","./genre-view.scss":"components/genre-view/genre-view.scss","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js"}],"components/registration-view/registration-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","../navbar-view/navbar-view":"components/navbar-view/navbar-view.jsx","./genre-view.scss":"components/genre-view/genre-view.scss","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js"}],"components/registration-view/registration-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -40515,6 +40552,8 @@ var _react = _interopRequireWildcard(require("react"));
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
 require("./registration-view.scss");
+
+var _navbarView = require("../navbar-view/navbar-view");
 
 var _Form = _interopRequireDefault(require("react-bootstrap/Form"));
 
@@ -40574,7 +40613,7 @@ function RegistrationView(props) {
     }).catch(function (e) {
       console.log('error registering the user');
     });
-    return /*#__PURE__*/_react.default.createElement(_Form.default, null, /*#__PURE__*/_react.default.createElement(_Form.default.Group, null, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Username:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
+    return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_navbarView.NavbarView, null), /*#__PURE__*/_react.default.createElement(_Form.default, null, /*#__PURE__*/_react.default.createElement(_Form.default.Group, null, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Username:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
       type: "text",
       onChange: function onChange(e) {
         return setUsername(e.target.value);
@@ -40598,7 +40637,7 @@ function RegistrationView(props) {
       variant: "info",
       type: "submit",
       onClick: handleSubmit
-    }, "Register"));
+    }, "Register")));
   }; // PropTypes to validate data type input
 
 
@@ -40609,7 +40648,7 @@ function RegistrationView(props) {
     birthday: _propTypes.default.date
   };
 }
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","./registration-view.scss":"components/registration-view/registration-view.scss","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js"}],"components/main-view/main-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","./registration-view.scss":"components/registration-view/registration-view.scss","../navbar-view/navbar-view":"components/navbar-view/navbar-view.jsx","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js"}],"components/main-view/main-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -40822,7 +40861,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         exact: true,
         path: "/",
         render: function render() {
-          if (!user) return /*#__PURE__*/_react.default.createElement(_Col.default, null, /*#__PURE__*/_react.default.createElement(_loginView.LoginView, {
+          if (!user) return /*#__PURE__*/_react.default.createElement(_Col.default, null, /*#__PURE__*/_react.default.createElement(_navbarView.NavbarView, null), /*#__PURE__*/_react.default.createElement(_loginView.LoginView, {
             onLoggedIn: function onLoggedIn(user) {
               return _this3.onLoggedIn(user);
             }
@@ -40831,12 +40870,12 @@ var MainView = /*#__PURE__*/function (_React$Component) {
             className: "main-view"
           });
           return movies.map(function (m) {
-            return /*#__PURE__*/_react.default.createElement(_Col.default, {
-              md: 3,
+            return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_navbarView.NavbarView, null), /*#__PURE__*/_react.default.createElement(_Col.default, {
+              md: 4,
               key: m._id
             }, /*#__PURE__*/_react.default.createElement(_movieCard.MovieCard, {
               movie: m
-            }));
+            })));
           });
         }
       }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
@@ -40857,7 +40896,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           if (!user) return;
 
           /*#__PURE__*/
-          _react.default.createElement(_Row.default, null, /*#__PURE__*/_react.default.createElement(_navbarView.NavbarView, null), /*#__PURE__*/_react.default.createElement(_Col.default, {
+          _react.default.createElement(_Row.default, null, /*#__PURE__*/_react.default.createElement(_Col.default, {
             md: 6
           }, /*#__PURE__*/_react.default.createElement(_loginView.LoginView, {
             onLoggedIn: function onLoggedIn(user) {
@@ -41039,7 +41078,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56478" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59676" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

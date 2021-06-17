@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './registration-view.scss';
+import { NavbarView } from '../navbar-view/navbar-view';
 // Bootstrap components
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -31,29 +32,32 @@ export function RegistrationView(props) {
       });
 
     return (
-      <Form>
-        <Form.Group>
-          <Form.Label>Username:</Form.Label>
-          <Form.Control type='text' onChange={e => setUsername(e.target.value)} />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Password:</Form.Label>
-          <Form.Control type='password' onChange={e => setPassword(e.target.value)} />
-        </Form.Group>
+      <div>
+        <NavbarView />
+        <Form>
+          <Form.Group>
+            <Form.Label>Username:</Form.Label>
+            <Form.Control type='text' onChange={e => setUsername(e.target.value)} />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Password:</Form.Label>
+            <Form.Control type='password' onChange={e => setPassword(e.target.value)} />
+          </Form.Group>
 
-        <Form.Group>
-          <Form.Label>Email:</Form.Label>
-          <Form.Control type='text' onChange={e => setEmail(e.target.value)} />
-        </Form.Group>
+          <Form.Group>
+            <Form.Label>Email:</Form.Label>
+            <Form.Control type='text' onChange={e => setEmail(e.target.value)} />
+          </Form.Group>
 
-        <Form.Group>
-          <Form.Label>Birthday:</Form.Label>
-          <Form.Control type='date' onChange={e => setBirthday(e.target.value)} />
-        </Form.Group>
+          <Form.Group>
+            <Form.Label>Birthday:</Form.Label>
+            <Form.Control type='date' onChange={e => setBirthday(e.target.value)} />
+          </Form.Group>
 
-        <Button variant='info' type='submit' onClick={handleSubmit}>Register
-      </Button>
-      </Form>
+          <Button variant='info' type='submit' onClick={handleSubmit}>Register
+          </Button>
+        </Form>
+      </div>
     );
   }
 

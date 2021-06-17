@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { NavbarView } from '../navbar-view/navbar-view';
 import './movie-view.scss';
 // Bootstrap components
 import Button from 'react-bootstrap/Button';
@@ -11,6 +12,7 @@ export class MovieView extends React.Component {
   render() {
     const { movie, onBackClick } = this.props;
     return <div className='movie-view'>
+      <NavbarView />
       <div className='movie-poster'>
         <img src={movie.ImagePath} />
       </div>
