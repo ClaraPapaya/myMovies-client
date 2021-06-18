@@ -39930,7 +39930,7 @@ var NavbarView = /*#__PURE__*/function (_React$Component) {
   _createClass(NavbarView, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/_react.default.createElement(_Navbar.default, {
+      return /*#__PURE__*/_react.default.createElement(_Container.default, null, /*#__PURE__*/_react.default.createElement(_Navbar.default, {
         bg: "light",
         expand: "lg",
         fixed: "top"
@@ -39941,30 +39941,23 @@ var NavbarView = /*#__PURE__*/function (_React$Component) {
       }), /*#__PURE__*/_react.default.createElement(_Navbar.default.Collapse, {
         id: "responsive-navbar-nav"
       }, /*#__PURE__*/_react.default.createElement(_Nav.default, {
-        activeKey: "/",
-        onSelect: function onSelect(selectedKey) {
-          return alert("selected ".concat(selectedKey));
-        }
-      }, /*#__PURE__*/_react.default.createElement(_Nav.default.Item, null, /*#__PURE__*/_react.default.createElement(_Nav.default.Link, {
+        activeKey: "/"
+      }, /*#__PURE__*/_react.default.createElement(_Nav.default.Link, {
         href: "/"
-      }, "Home")), /*#__PURE__*/_react.default.createElement(_Nav.default.Item, null, /*#__PURE__*/_react.default.createElement(_Nav.default.Link, {
+      }, "Home"), /*#__PURE__*/_react.default.createElement(_Nav.default.Link, {
         href: "/users/${user}"
-      }, "Profile"))), /*#__PURE__*/_react.default.createElement(_Form.default, {
+      }, "Profile")), /*#__PURE__*/_react.default.createElement(_Form.default, {
         inline: true
       }, /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
         type: "text",
-        placeholder: "Search",
+        placeholder: "Search Movies by Title",
         className: "mr-sm-2"
-      }), /*#__PURE__*/_react.default.createElement(_Button.default, {
-        type: "submit"
-      }, "Submit")), /*#__PURE__*/_react.default.createElement(_Navbar.default.Text, null, "Signed in as: ", /*#__PURE__*/_react.default.createElement("a", {
-        href: "#login"
-      }, "Username")), /*#__PURE__*/_react.default.createElement(_Button.default, {
+      })), /*#__PURE__*/_react.default.createElement(_Button.default, {
         onClick: function onClick() {
           return logOut();
         },
         variant: "light"
-      }, "Logout")));
+      }, "Logout"))));
     }
   }]);
 
@@ -39972,7 +39965,20 @@ var NavbarView = /*#__PURE__*/function (_React$Component) {
 }(_react.default.Component);
 
 exports.NavbarView = NavbarView;
-var _default = NavbarView;
+var _default = NavbarView; // Idea to bring up logged in user in Navbar:
+// 
+// componentDidMount() {
+//   let accessToken = localStorage.getItem('token');
+//   if (accessToken !== null) {
+//     this.setState({
+//       user: localStorage.getItem('user')
+//     })
+//   }
+// }
+// const user = this.state;
+// <Navbar.Text>Signed in as: <a href='#login'>{user => this.onLoggedIn(user)}</a></Navbar.Text>
+// taken from Nav tag: onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
+
 exports.default = _default;
 },{"react":"../node_modules/react/index.js","react-bootstrap/Navbar":"../node_modules/react-bootstrap/esm/Navbar.js","react-bootstrap/Nav":"../node_modules/react-bootstrap/esm/Nav.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js"}],"components/movie-card/movie-card.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
