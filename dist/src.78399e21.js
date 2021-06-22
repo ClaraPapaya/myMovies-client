@@ -39911,7 +39911,7 @@ var logOut = function logOut() {
   localStorage.removeItem('token');
   localStorage.removeItem('user');
   localStorage.removeItem('email');
-  localStorage.removeItem('borthday');
+  localStorage.removeItem('birthday');
   localStorage.removeItem('favoriteMovies');
   window.open('/', '_self');
 };
@@ -40209,7 +40209,11 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var movie = this.props.movie;
-      return /*#__PURE__*/_react.default.createElement(_Card.default, null, /*#__PURE__*/_react.default.createElement(_Card.default.Img, {
+      return /*#__PURE__*/_react.default.createElement(_Card.default, {
+        style: {
+          marginTop: '70px'
+        }
+      }, /*#__PURE__*/_react.default.createElement(_Card.default.Img, {
         variant: "top",
         src: movie.ImagePath
       }), /*#__PURE__*/_react.default.createElement(_Card.default.Body, null, /*#__PURE__*/_react.default.createElement(_Card.default.Title, null, movie.Title), /*#__PURE__*/_react.default.createElement(_Card.default.Text, null, movie.Description), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
@@ -40297,7 +40301,10 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
           movie = _this$props.movie,
           onBackClick = _this$props.onBackClick;
       return /*#__PURE__*/_react.default.createElement("div", {
-        className: "movie-view"
+        className: "movie-view",
+        style: {
+          marginTop: '70px'
+        }
       }, /*#__PURE__*/_react.default.createElement(_navbarView.NavbarView, null), /*#__PURE__*/_react.default.createElement("div", {
         className: "movie-poster"
       }, /*#__PURE__*/_react.default.createElement("img", {
@@ -40412,7 +40419,11 @@ var DirectorView = /*#__PURE__*/function (_React$Component) {
       var _this$props = this.props,
           director = _this$props.director,
           onBackClick = _this$props.onBackClick;
-      return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_navbarView.NavbarView, null), /*#__PURE__*/_react.default.createElement("div", {
+      return /*#__PURE__*/_react.default.createElement("div", {
+        style: {
+          marginTop: '70px'
+        }
+      }, /*#__PURE__*/_react.default.createElement(_navbarView.NavbarView, null), /*#__PURE__*/_react.default.createElement("div", {
         className: "director-view"
       }, /*#__PURE__*/_react.default.createElement("div", {
         className: "director-name"
@@ -40508,7 +40519,11 @@ var GenreView = /*#__PURE__*/function (_React$Component) {
       var _this$props = this.props,
           genre = _this$props.genre,
           onBackClick = _this$props.onBackClick;
-      return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_navbarView.NavbarView, null), /*#__PURE__*/_react.default.createElement("div", {
+      return /*#__PURE__*/_react.default.createElement("div", {
+        style: {
+          marginTop: '70px'
+        }
+      }, /*#__PURE__*/_react.default.createElement(_navbarView.NavbarView, null), /*#__PURE__*/_react.default.createElement("div", {
         className: "genre-view"
       }, /*#__PURE__*/_react.default.createElement("div", {
         className: "genre-name"
@@ -40867,7 +40882,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         exact: true,
         path: "/",
         render: function render() {
-          if (!user) return /*#__PURE__*/_react.default.createElement(_Col.default, null, /*#__PURE__*/_react.default.createElement(_navbarView.NavbarView, null), /*#__PURE__*/_react.default.createElement(_loginView.LoginView, {
+          if (!user) return /*#__PURE__*/_react.default.createElement(_Col.default, null, /*#__PURE__*/_react.default.createElement(_loginView.LoginView, {
             onLoggedIn: function onLoggedIn(user) {
               return _this3.onLoggedIn(user);
             }
@@ -40878,7 +40893,10 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           return movies.map(function (m) {
             return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_navbarView.NavbarView, null), /*#__PURE__*/_react.default.createElement(_Col.default, {
               md: 4,
-              key: m._id
+              key: m._id,
+              style: {
+                marginTop: '70px'
+              }
             }, /*#__PURE__*/_react.default.createElement(_movieCard.MovieCard, {
               movie: m
             })));
@@ -41084,7 +41102,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59676" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58587" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

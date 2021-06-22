@@ -11,7 +11,7 @@ export class MovieView extends React.Component {
 
   render() {
     const { movie, onBackClick } = this.props;
-    return <div className='movie-view'>
+    return <div className='movie-view' style={{ marginTop: '70px', }}>
       <NavbarView />
       <div className='movie-poster'>
         <img src={movie.ImagePath} />

@@ -9,7 +9,7 @@ export class GenreView extends React.Component {
 
   render() {
     const { genre, onBackClick } = this.props;
-    return <div>
+    return <div style={{ marginTop: '70px', }}>
       <NavbarView />
       <div className='genre-view'>
         <div className='genre-name'>

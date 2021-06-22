@@ -9,7 +9,7 @@ export class DirectorView extends React.Component {
 
   render() {
     const { director, onBackClick } = this.props;
-    return <div>
+    return <div style={{ marginTop: '70px', }}>
       <NavbarView />
       <div className='director-view'>
         <div className='director-name'>

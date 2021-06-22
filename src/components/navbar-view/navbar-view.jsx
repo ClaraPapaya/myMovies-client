@@ -10,7 +10,7 @@ let logOut = function () {
   localStorage.removeItem('token');
   localStorage.removeItem('user');
   localStorage.removeItem('email');
-  localStorage.removeItem('borthday');
+  localStorage.removeItem('birthday');
   localStorage.removeItem('favoriteMovies');
   window.open('/', '_self');
 }

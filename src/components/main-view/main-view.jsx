@@ -86,14 +86,13 @@ export class MainView extends React.Component {
           <Route exact path='/' render={() => {
             if (!user) return (
               <Col>
-                <NavbarView />
                 <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
               </Col>)
             if (movies.length === 0) return <div className='main-view' />;
             return movies.map(m => (
               <div>
                 <NavbarView />
-                <Col md={4} key={m._id}>
+                <Col md={4} key={m._id} style={{ marginTop: '70px', }}>
                   <MovieCard movie={m} />
                 </Col>
               </div>
