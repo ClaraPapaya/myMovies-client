@@ -10,13 +10,12 @@ import { MovieView } from '../movie-view/movie-view';
 import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
 import { RegistrationView } from '../registration-view/registration-view';
+import { ProfileView } from '../profile-view/profile-view';
 
 import './main-view.scss';
 // Bootstrap components
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
-
 
 export class MainView extends React.Component {
   constructor() {
@@ -146,6 +145,11 @@ export class MainView extends React.Component {
               </Col>
             )
           }} />
+
+          <Route path='/users/me' render={() => {
+            return <ProfileView username={this.state.user} email={localStorage.getItem('email')} birthday={localStorage.getItem('birthday')} onBackClick={() => history.goBack()} />
+          }} />
+
         </Row>
       </Router>
     );

@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 // Bootstrap components
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
@@ -30,7 +31,7 @@ export class NavbarView extends React.Component {
           <Navbar.Collapse id='responsive-navbar-nav'>
             <Nav activeKey='/' >
               <Nav.Link href='/'>Home</Nav.Link>
-              <Nav.Link href='/users/${user}'>Profile</Nav.Link>
+              <Nav.Link href='/users/me'>Profile</Nav.Link>
             </Nav>
             <Form inline>
               <Form.Control type='text' placeholder='Search Movies by Title' className='mr-sm-2' />
@@ -45,19 +46,3 @@ export class NavbarView extends React.Component {
 }
 
 export default NavbarView;
-
-// Idea to bring up logged in user in Navbar:
-// 
-  // componentDidMount() {
-  //   let accessToken = localStorage.getItem('token');
-  //   if (accessToken !== null) {
-  //     this.setState({
-  //       user: localStorage.getItem('user')
-  //     })
-  //   }
-  // }
-
-  // const user = this.state;
-  // <Navbar.Text>Signed in as: <a href='#login'>{user => this.onLoggedIn(user)}</a></Navbar.Text>
-
-  // taken from Nav tag: onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
