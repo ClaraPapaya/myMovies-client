@@ -84,7 +84,8 @@ export class MainView extends React.Component {
 
           <Route exact path='/' render={() => {
             if (!user) return (
-              <Col>
+              <Col style={{ marginTop: '70px', }}>
+                <h1>All My Movies</h1>
                 <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
               </Col>)
             if (movies.length === 0) return <div className='main-view' />;
@@ -147,6 +148,12 @@ export class MainView extends React.Component {
           }} />
 
           <Route path='/users/me' render={() => {
+            if (!user) return
+            <Col>
+              <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+            </Col>
+            if (movies.length === 0) return <div className='main-view' />;
+
             return <ProfileView username={this.state.user} email={localStorage.getItem('email')} birthday={localStorage.getItem('birthday')} onBackClick={() => history.goBack()} />
           }} />
 

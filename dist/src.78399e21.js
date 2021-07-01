@@ -37081,6 +37081,8 @@ var _axios = _interopRequireDefault(require("axios"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
+var _reactRouterDom = require("react-router-dom");
+
 require("./login-view.scss");
 
 var _Form = _interopRequireDefault(require("react-bootstrap/Form"));
@@ -37116,6 +37118,16 @@ function LoginView(props) {
       password = _useState4[0],
       setPassword = _useState4[1];
 
+  var _useState5 = (0, _react.useState)({}),
+      _useState6 = _slicedToArray(_useState5, 2),
+      usernameError = _useState6[0],
+      setUsernameError = _useState6[1];
+
+  var _useState7 = (0, _react.useState)({}),
+      _useState8 = _slicedToArray(_useState7, 2),
+      passwordError = _useState8[0],
+      setPasswordError = _useState8[1];
+
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
     console.log(username, password); // Send a request to the server for authentication, then call props.onLoggedIn(username)
@@ -37133,6 +37145,26 @@ function LoginView(props) {
     });
   };
 
+  var formValidation = function formValidation() {
+    var usernameError = {};
+    var passwordError = {};
+    var isValid = true;
+
+    if (username.trim().length < 1) {
+      usernameError.usernameShort = 'Username is required';
+      isValid = false;
+    }
+
+    if (password.trim().length < 1) {
+      passwordError.passwordMissing = 'Password is required';
+      isValid = false;
+    }
+
+    setUsernameError(usernameError);
+    setPasswordError(passwordError);
+    return isValid;
+  };
+
   return /*#__PURE__*/_react.default.createElement(_Form.default, null, /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
     controlId: "formUsername"
   }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Username:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
@@ -37140,18 +37172,30 @@ function LoginView(props) {
     onChange: function onChange(e) {
       return setUsername(e.target.value);
     }
-  })), /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
+  })), Object.keys(usernameError).map(function (key) {
+    return /*#__PURE__*/_react.default.createElement("div", {
+      key: key
+    }, usernameError[key]);
+  }), /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
     controlId: "formPassword"
   }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Password:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
     type: "password",
     onChange: function onChange(e) {
       return setPassword(e.target.value);
     }
-  })), /*#__PURE__*/_react.default.createElement(_Button.default, {
+  })), Object.keys(passwordError).map(function (key) {
+    return /*#__PURE__*/_react.default.createElement("div", {
+      key: key
+    }, passwordError[key]);
+  }), /*#__PURE__*/_react.default.createElement(_Button.default, {
     variant: "info",
     type: "submit",
     onClick: handleSubmit
-  }, "Log in"));
+  }, "Log in"), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    to: '/register'
+  }, /*#__PURE__*/_react.default.createElement(_Button.default, {
+    variant: "dark"
+  }, "Register")));
 } // PropTypes to validate data type input
 
 
@@ -37162,7 +37206,7 @@ LoginView.propTypes = {
   }),
   onLoggedIn: _propTypes.default.func
 };
-},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","prop-types":"../node_modules/prop-types/index.js","./login-view.scss":"components/login-view/login-view.scss","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js"}],"../node_modules/invariant/browser.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","prop-types":"../node_modules/prop-types/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./login-view.scss":"components/login-view/login-view.scss","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js"}],"../node_modules/invariant/browser.js":[function(require,module,exports) {
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -39873,8 +39917,6 @@ exports.default = exports.NavbarView = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _reactRouterDom = require("react-router-dom");
-
 var _Navbar = _interopRequireDefault(require("react-bootstrap/Navbar"));
 
 var _Nav = _interopRequireDefault(require("react-bootstrap/Nav"));
@@ -39937,7 +39979,7 @@ var NavbarView = /*#__PURE__*/function (_React$Component) {
         expand: "lg",
         fixed: "top"
       }, /*#__PURE__*/_react.default.createElement(_Navbar.default.Brand, {
-        href: ""
+        href: "/"
       }, "All My Movies"), /*#__PURE__*/_react.default.createElement(_Navbar.default.Toggle, {
         "area-controls": "responsive-navbar-nav"
       }), /*#__PURE__*/_react.default.createElement(_Navbar.default.Collapse, {
@@ -39969,7 +40011,7 @@ var NavbarView = /*#__PURE__*/function (_React$Component) {
 exports.NavbarView = NavbarView;
 var _default = NavbarView;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap/Navbar":"../node_modules/react-bootstrap/esm/Navbar.js","react-bootstrap/Nav":"../node_modules/react-bootstrap/esm/Nav.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js"}],"components/movie-card/movie-card.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-bootstrap/Navbar":"../node_modules/react-bootstrap/esm/Navbar.js","react-bootstrap/Nav":"../node_modules/react-bootstrap/esm/Nav.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js"}],"components/movie-card/movie-card.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -40561,9 +40603,11 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
-require("./registration-view.scss");
+var _axios = _interopRequireDefault(require("axios"));
 
-var _navbarView = require("../navbar-view/navbar-view");
+var _reactRouterDom = require("react-router-dom");
+
+require("./registration-view.scss");
 
 var _Form = _interopRequireDefault(require("react-bootstrap/Form"));
 
@@ -40608,10 +40652,26 @@ function RegistrationView(props) {
       birthday = _useState8[0],
       setBirthday = _useState8[1];
 
-  var handleSubmit = function handleSubmit() {
-    e.preventDefaut(); // Send a request to the server to register a new user
+  var _useState9 = (0, _react.useState)({}),
+      _useState10 = _slicedToArray(_useState9, 2),
+      usernameError = _useState10[0],
+      setUsernameError = _useState10[1];
 
-    axios.post('https://allmymovies.herokuapp.com/users', {
+  var _useState11 = (0, _react.useState)({}),
+      _useState12 = _slicedToArray(_useState11, 2),
+      passwordError = _useState12[0],
+      setPasswordError = _useState12[1];
+
+  var _useState13 = (0, _react.useState)({}),
+      _useState14 = _slicedToArray(_useState13, 2),
+      emailError = _useState14[0],
+      setEmailError = _useState14[1];
+
+  var handleSubmit = function handleSubmit() {
+    e.preventDefaut();
+    var isValid = formValidation(); // Send a request to the server to register a new user
+
+    _axios.default.post('https://allmymovies.herokuapp.com/users', {
       Username: username,
       Password: password,
       Email: email,
@@ -40621,44 +40681,99 @@ function RegistrationView(props) {
       console.log(data);
       window.open('/', '_self'); // '_self' is necessary so that the page opens in the current tab
     }).catch(function (e) {
-      console.log('error registering the user');
+      console.log('Error registering the user.');
     });
-    return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_navbarView.NavbarView, null), /*#__PURE__*/_react.default.createElement(_Form.default, null, /*#__PURE__*/_react.default.createElement(_Form.default.Group, null, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Username:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
-      type: "text",
-      onChange: function onChange(e) {
-        return setUsername(e.target.value);
-      }
-    })), /*#__PURE__*/_react.default.createElement(_Form.default.Group, null, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Password:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
-      type: "password",
-      onChange: function onChange(e) {
-        return setPassword(e.target.value);
-      }
-    })), /*#__PURE__*/_react.default.createElement(_Form.default.Group, null, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Email:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
-      type: "text",
-      onChange: function onChange(e) {
-        return setEmail(e.target.value);
-      }
-    })), /*#__PURE__*/_react.default.createElement(_Form.default.Group, null, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Birthday:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
-      type: "date",
-      onChange: function onChange(e) {
-        return setBirthday(e.target.value);
-      }
-    })), /*#__PURE__*/_react.default.createElement(_Button.default, {
-      variant: "info",
-      type: "submit",
-      onClick: handleSubmit
-    }, "Register")));
-  }; // PropTypes to validate data type input
-
-
-  RegistrationView.propTypes = {
-    username: _propTypes.default.string.isRequired,
-    password: _propTypes.default.string.isRequired,
-    email: _propTypes.default.string.isRequired,
-    birthday: _propTypes.default.date
   };
-}
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","./registration-view.scss":"components/registration-view/registration-view.scss","../navbar-view/navbar-view":"components/navbar-view/navbar-view.jsx","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js"}],"../node_modules/react-bootstrap/esm/ListGroupItem.js":[function(require,module,exports) {
+
+  var formValidation = function formValidation() {
+    var usernameError = {};
+    var passwordError = {};
+    var emailError = {};
+    var isValid = true;
+
+    if (username.trim().length < 5) {
+      usernameError.usernameShort = 'Minimum 5 characters.';
+      isValid = false;
+    }
+
+    if (password.trim().length < 1) {
+      passwordError.passwordMissing = 'Password is required.';
+      isValid = false;
+    }
+
+    if (!email.includes('.') && !email.includes('@')) {
+      emailError.emailNotEmail = 'Email is not valid.';
+      isValid = false;
+    }
+
+    setUsernameError(usernameError);
+    setPasswordError(passwordError);
+    setEmailError(emailError);
+    return isValid;
+  };
+
+  return /*#__PURE__*/_react.default.createElement(_Form.default, null, /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
+    controlId: "registerUsername"
+  }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Username:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
+    type: "text",
+    onChange: function onChange(e) {
+      return setUsername(e.target.value);
+    }
+  })), Object.keys(usernameError).map(function (key) {
+    return /*#__PURE__*/_react.default.createElement("div", {
+      key: key
+    }, usernameError[key]);
+  }), /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
+    controlId: "registerPassword"
+  }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Password:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
+    type: "password",
+    onChange: function onChange(e) {
+      return setPassword(e.target.value);
+    }
+  })), Object.keys(passwordError).map(function (key) {
+    return /*#__PURE__*/_react.default.createElement("div", {
+      key: key
+    }, passwordError[key]);
+  }), /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
+    controlId: "registerEmail"
+  }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Email:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
+    type: "text",
+    onChange: function onChange(e) {
+      return setEmail(e.target.value);
+    }
+  })), Object.keys(emailError).map(function (key) {
+    return /*#__PURE__*/_react.default.createElement("div", {
+      key: key
+    }, emailError[key]);
+  }), /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
+    controlId: "registerBirthday"
+  }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Birthday:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
+    type: "date",
+    onChange: function onChange(e) {
+      return setBirthday(e.target.value);
+    }
+  })), /*#__PURE__*/_react.default.createElement(_Button.default, {
+    variant: "info",
+    type: "submit",
+    onClick: handleSubmit
+  }, "Register"), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    to: '/'
+  }, /*#__PURE__*/_react.default.createElement(_Button.default, {
+    variant: "dark"
+  }, "Login")));
+} // PropTypes to validate data type input
+
+
+RegistrationView.propTypes = {
+  register: _propTypes.default.shape({
+    Username: _propTypes.default.string.isRequired,
+    Password: _propTypes.default.string.isRequired,
+    Email: _propTypes.default.string.isRequired,
+    Birthday: _propTypes.default.date
+  }),
+  onRegister: _propTypes.default.func
+};
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","axios":"../node_modules/axios/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./registration-view.scss":"components/registration-view/registration-view.scss","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js"}],"../node_modules/react-bootstrap/esm/ListGroupItem.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41118,7 +41233,11 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         exact: true,
         path: "/",
         render: function render() {
-          if (!user) return /*#__PURE__*/_react.default.createElement(_Col.default, null, /*#__PURE__*/_react.default.createElement(_loginView.LoginView, {
+          if (!user) return /*#__PURE__*/_react.default.createElement(_Col.default, {
+            style: {
+              marginTop: '70px'
+            }
+          }, /*#__PURE__*/_react.default.createElement("h1", null, "All My Movies"), /*#__PURE__*/_react.default.createElement(_loginView.LoginView, {
             onLoggedIn: function onLoggedIn(user) {
               return _this3.onLoggedIn(user);
             }
@@ -41237,6 +41356,18 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
         path: "/users/me",
         render: function render() {
+          if (!user) return;
+
+          /*#__PURE__*/
+          _react.default.createElement(_Col.default, null, /*#__PURE__*/_react.default.createElement(_loginView.LoginView, {
+            onLoggedIn: function onLoggedIn(user) {
+              return _this3.onLoggedIn(user);
+            }
+          }));
+
+          if (movies.length === 0) return /*#__PURE__*/_react.default.createElement("div", {
+            className: "main-view"
+          });
           return /*#__PURE__*/_react.default.createElement(_profileView.ProfileView, {
             username: _this3.state.user,
             email: localStorage.getItem('email'),
@@ -41350,7 +41481,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54494" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58784" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

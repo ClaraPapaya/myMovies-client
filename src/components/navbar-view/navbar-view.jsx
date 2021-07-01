@@ -1,5 +1,4 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 // Bootstrap components
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
@@ -26,7 +25,7 @@ export class NavbarView extends React.Component {
     return (
       <Container>
         <Navbar bg='light' expand='lg' fixed='top'>
-          <Navbar.Brand href=''>All My Movies</Navbar.Brand>
+          <Navbar.Brand href='/'>All My Movies</Navbar.Brand>
           <Navbar.Toggle area-controls='responsive-navbar-nav' />
           <Navbar.Collapse id='responsive-navbar-nav'>
             <Nav activeKey='/' >
