@@ -37188,12 +37188,18 @@ function LoginView(props) {
       key: key
     }, passwordError[key]);
   }), /*#__PURE__*/_react.default.createElement(_Button.default, {
+    style: {
+      margin: '3px'
+    },
     variant: "info",
     type: "submit",
     onClick: handleSubmit
   }, "Log in"), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     to: '/register'
   }, /*#__PURE__*/_react.default.createElement(_Button.default, {
+    style: {
+      margin: '3px'
+    },
     variant: "dark"
   }, "Register")));
 } // PropTypes to validate data type input
@@ -39985,7 +39991,8 @@ var NavbarView = /*#__PURE__*/function (_React$Component) {
       }), /*#__PURE__*/_react.default.createElement(_Navbar.default.Collapse, {
         id: "responsive-navbar-nav"
       }, /*#__PURE__*/_react.default.createElement(_Nav.default, {
-        activeKey: "/"
+        activeKey: "/",
+        className: "mr-auto"
       }, /*#__PURE__*/_react.default.createElement(_Nav.default.Link, {
         href: "/"
       }, "Home"), /*#__PURE__*/_react.default.createElement(_Nav.default.Link, {
@@ -40250,7 +40257,7 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
       }), /*#__PURE__*/_react.default.createElement(_Card.default.Body, null, /*#__PURE__*/_react.default.createElement(_Card.default.Title, null, movie.Title), /*#__PURE__*/_react.default.createElement(_Card.default.Text, null, movie.Description), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
         to: "/movies/".concat(movie._id)
       }, /*#__PURE__*/_react.default.createElement(_Button.default, {
-        variant: "link"
+        variant: "info"
       }, "Open"))));
     }
   }]);
@@ -40281,6 +40288,8 @@ exports.MovieView = void 0;
 var _react = _interopRequireDefault(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
+
+var _axios = _interopRequireDefault(require("axios"));
 
 var _reactRouterDom = require("react-router-dom");
 
@@ -40320,23 +40329,48 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(MovieView);
 
   function MovieView() {
+    var _this;
+
     _classCallCheck(this, MovieView);
 
-    return _super.apply(this, arguments);
+    _this = _super.call(this);
+    _this.state = {};
+    return _this;
   }
 
   _createClass(MovieView, [{
+    key: "addFavorite",
+    value: function addFavorite(movie) {
+      var token = localStorage.getItem('token');
+
+      var url = 'https://allmymovies.herokuapp.com/users/' + localStorage.getItem('user') + '/movies/' + movie._id;
+
+      console.log(token);
+
+      _axios.default.post(url, '', {
+        headers: {
+          Authorization: "Bearer ".concat(token)
+        }
+      }).then(function (response) {
+        console.log(response);
+        window.open('/users/me', '_self');
+        alert('Added to favorite Movies!');
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       var _this$props = this.props,
           movie = _this$props.movie,
           onBackClick = _this$props.onBackClick;
-      return /*#__PURE__*/_react.default.createElement("div", {
+      return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_navbarView.NavbarView, null)), /*#__PURE__*/_react.default.createElement("div", {
         className: "movie-view",
         style: {
           marginTop: '70px'
         }
-      }, /*#__PURE__*/_react.default.createElement(_navbarView.NavbarView, null), /*#__PURE__*/_react.default.createElement("div", {
+      }, /*#__PURE__*/_react.default.createElement("div", {
         className: "movie-poster"
       }, /*#__PURE__*/_react.default.createElement("img", {
         src: movie.ImagePath
@@ -40367,11 +40401,22 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
         className: "value",
         to: "/genres/".concat(movie.Genre.Name)
       }, movie.Genre.Name)), /*#__PURE__*/_react.default.createElement(_Button.default, {
+        style: {
+          margin: '3px'
+        },
         variant: "info",
+        onClick: function onClick() {
+          return _this2.addFavorite(movie);
+        }
+      }, "Add to Favorite Movies"), /*#__PURE__*/_react.default.createElement(_Button.default, {
+        style: {
+          margin: '3px'
+        },
+        variant: "dark",
         onClick: function onClick() {
           onBackClick(null);
         }
-      }, "Back"));
+      }, "Back")));
     }
   }]);
 
@@ -40386,7 +40431,7 @@ MovieView.propTypes = {
   Director: _propTypes.default.string,
   Genre: _propTypes.default.string
 };
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../navbar-view/navbar-view":"components/navbar-view/navbar-view.jsx","./movie-view.scss":"components/movie-view/movie-view.scss","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js"}],"components/director-view/director-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","axios":"../node_modules/axios/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../navbar-view/navbar-view":"components/navbar-view/navbar-view.jsx","./movie-view.scss":"components/movie-view/movie-view.scss","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js"}],"components/director-view/director-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -40753,6 +40798,9 @@ function RegistrationView(props) {
       return setBirthday(e.target.value);
     }
   })), /*#__PURE__*/_react.default.createElement(_Button.default, {
+    style: {
+      margin: '3px'
+    },
     variant: "info",
     type: "submit",
     onClick: handleSubmit
@@ -40760,7 +40808,7 @@ function RegistrationView(props) {
     to: '/'
   }, /*#__PURE__*/_react.default.createElement(_Button.default, {
     variant: "dark"
-  }, "Login")));
+  }, "Back")));
 } // PropTypes to validate data type input
 
 
@@ -40985,27 +41033,48 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         }
       }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_navbarView.NavbarView, null)), /*#__PURE__*/_react.default.createElement(_Card.default, {
         style: {
-          width: '18rem'
+          width: '25rem'
         }
       }, /*#__PURE__*/_react.default.createElement(_Card.default.Body, null, /*#__PURE__*/_react.default.createElement(_Card.default.Title, null, "My Profile"), /*#__PURE__*/_react.default.createElement(_Card.default.Text, null, /*#__PURE__*/_react.default.createElement(_ListGroup.default, {
         variant: "flush"
       }, /*#__PURE__*/_react.default.createElement(_ListGroupItem.default, null, "Username:", /*#__PURE__*/_react.default.createElement("span", {
+        style: {
+          marginLeft: '5px'
+        },
         className: "text-color"
       }, username)), /*#__PURE__*/_react.default.createElement(_ListGroupItem.default, null, "Email:", /*#__PURE__*/_react.default.createElement("span", {
+        style: {
+          marginLeft: '5px'
+        },
         className: "text-color"
       }, email)), /*#__PURE__*/_react.default.createElement(_ListGroupItem.default, null, "Birthday:", /*#__PURE__*/_react.default.createElement("span", {
+        style: {
+          marginLeft: '5px'
+        },
         className: "text-color"
       }, birthday)), /*#__PURE__*/_react.default.createElement(_ListGroupItem.default, null, "Favorite Movies:", /*#__PURE__*/_react.default.createElement("span", {
+        style: {
+          marginLeft: '5px'
+        },
         className: "text-color"
       }, movies)))), /*#__PURE__*/_react.default.createElement(_Button.default, {
+        style: {
+          margin: '3px'
+        },
         variant: "info",
         onClick: function onClick() {
           onBackClick();
         }
       }, "Back"), /*#__PURE__*/_react.default.createElement(_Button.default, {
+        style: {
+          margin: '3px'
+        },
         variant: "info",
         onClick: function onClick() {}
       }, "Update Profile"), /*#__PURE__*/_react.default.createElement(_Button.default, {
+        style: {
+          margin: '3px'
+        },
         variant: "danger",
         onClick: function onClick() {
           _this.handleDelete();
@@ -41355,7 +41424,8 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         }
       }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
         path: "/users/me",
-        render: function render() {
+        render: function render(_ref4) {
+          var history = _ref4.history;
           if (!user) return;
 
           /*#__PURE__*/
@@ -41372,6 +41442,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
             username: _this3.state.user,
             email: localStorage.getItem('email'),
             birthday: localStorage.getItem('birthday'),
+            favoriteMovies: localStorage.getItem('favoriteMovies'),
             onBackClick: function onBackClick() {
               return history.goBack();
             }

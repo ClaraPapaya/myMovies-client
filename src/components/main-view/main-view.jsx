@@ -109,7 +109,8 @@ export class MainView extends React.Component {
           }} />
 
           <Route path='/movies/:movieId' render={({ match, history }) => {
-            if (!user) return
+            if (!user)
+              return
             <Row>
               <Col md={6}>
                 <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
@@ -147,14 +148,14 @@ export class MainView extends React.Component {
             )
           }} />
 
-          <Route path='/users/me' render={() => {
+          <Route path='/users/me' render={({ history }) => {
             if (!user) return
             <Col>
               <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
             </Col>
             if (movies.length === 0) return <div className='main-view' />;
 
-            return <ProfileView username={this.state.user} email={localStorage.getItem('email')} birthday={localStorage.getItem('birthday')} onBackClick={() => history.goBack()} />
+            return <ProfileView username={this.state.user} email={localStorage.getItem('email')} birthday={localStorage.getItem('birthday')} favoriteMovies={localStorage.getItem('favoriteMovies')} onBackClick={() => history.goBack()} />
           }} />
 
         </Row>

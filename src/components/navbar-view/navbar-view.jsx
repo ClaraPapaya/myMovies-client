@@ -28,7 +28,7 @@ export class NavbarView extends React.Component {
           <Navbar.Brand href='/'>All My Movies</Navbar.Brand>
           <Navbar.Toggle area-controls='responsive-navbar-nav' />
           <Navbar.Collapse id='responsive-navbar-nav'>
-            <Nav activeKey='/' >
+            <Nav activeKey='/' className='mr-auto' >
               <Nav.Link href='/'>Home</Nav.Link>
               <Nav.Link href='/users/me'>Profile</Nav.Link>
             </Nav>

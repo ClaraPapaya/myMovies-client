@@ -82,11 +82,11 @@ export function LoginView(props) {
         );
       })}
 
-      <Button variant='info' type='submit' onClick={handleSubmit}>Log in
+      <Button style={{ margin: '3px' }} variant='info' type='submit' onClick={handleSubmit}>Log in
       </Button>
 
       <Link to={'/register'}>
-        <Button variant='dark' >Register</Button>
+        <Button style={{ margin: '3px' }} variant='dark' >Register</Button>
       </Link>
     </Form>
   );
