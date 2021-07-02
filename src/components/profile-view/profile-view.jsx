@@ -12,12 +12,12 @@ export class ProfileView extends React.Component {
   constructor() {
     super();
     this.state = {
-      username: "",
-      password: "",
-      email: "",
-      birthday: "",
+      username: '',
+      password: '',
+      email: '',
+      birthday: '',
       favoriteMovies: [],
-      movies: ""
+      movies: ''
     }
   }
 
@@ -45,6 +45,24 @@ export class ProfileView extends React.Component {
       });
   }
 
+  handleDelete() {
+    let token = localStorage.getItem('token');
+    let user = localStorage.getItem('user');
+    axios
+      .delete(
+        `https://allmymovies.herokuapp.com/users/${user}`, { headers: { Authorization: `Bearer ${token}` } }
+      )
+      .then(() => {
+        alert(user + ' was deleted');
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+        window.location.pathname = '/';
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   render() {
     const { username, email, birthday, movies, onBackClick } = this.props;
     const { favoriteMovies } = this.state;
@@ -57,7 +75,7 @@ export class ProfileView extends React.Component {
         <Card.Body>
           <Card.Title>My Profile</Card.Title>
           <Card.Text>
-            <ListGroup variant="flush">
+            <ListGroup variant='flush'>
               <ListGroupItem>Username:<span style={{ marginLeft: '5px' }} className='text-color'>{username}</span></ListGroupItem>
               <ListGroupItem>Email:<span style={{ marginLeft: '5px' }} className='text-color'>{email}</span></ListGroupItem>
               <ListGroupItem>Birthday:<span style={{ marginLeft: '5px' }} className='text-color'>{birthday}</span></ListGroupItem>
@@ -75,5 +93,6 @@ export class ProfileView extends React.Component {
 
 export default ProfileView;
 
+// code from other repos
 // favoriteMovies={movies.filter(movie => userData.FavoriteMovies.includes(movie.Title))}
 // const favoriteMovieList = movies.filter((movie) => {return this.state.favoriteMovies.includes(movie._id)});

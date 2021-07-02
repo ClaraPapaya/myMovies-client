@@ -41019,12 +41019,12 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this);
     _this.state = {
-      username: "",
-      password: "",
-      email: "",
-      birthday: "",
+      username: '',
+      password: '',
+      email: '',
+      birthday: '',
       favoriteMovies: [],
-      movies: ""
+      movies: ''
     };
     return _this;
   }
@@ -41054,6 +41054,25 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
           birthday: response.data.Birthday,
           favoriteMovies: response.data.FavoriteMovies
         });
+      });
+    }
+  }, {
+    key: "handleDelete",
+    value: function handleDelete() {
+      var token = localStorage.getItem('token');
+      var user = localStorage.getItem('user');
+
+      _axios.default.delete("https://allmymovies.herokuapp.com/users/".concat(user), {
+        headers: {
+          Authorization: "Bearer ".concat(token)
+        }
+      }).then(function () {
+        alert(user + ' was deleted');
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+        window.location.pathname = '/';
+      }).catch(function (error) {
+        console.log(error);
       });
     }
   }, {
@@ -41128,7 +41147,8 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
 }(_react.default.Component);
 
 exports.ProfileView = ProfileView;
-var _default = ProfileView; // favoriteMovies={movies.filter(movie => userData.FavoriteMovies.includes(movie.Title))}
+var _default = ProfileView; // code from other repos
+// favoriteMovies={movies.filter(movie => userData.FavoriteMovies.includes(movie.Title))}
 // const favoriteMovieList = movies.filter((movie) => {return this.state.favoriteMovies.includes(movie._id)});
 
 exports.default = _default;
