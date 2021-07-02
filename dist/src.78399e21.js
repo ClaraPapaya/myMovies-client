@@ -40971,6 +40971,8 @@ exports.default = exports.ProfileView = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
+var _axios = _interopRequireDefault(require("axios"));
+
 var _navbarView = require("../navbar-view/navbar-view");
 
 var _Card = _interopRequireDefault(require("react-bootstrap/Card"));
@@ -41011,15 +41013,53 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(ProfileView);
 
   function ProfileView() {
+    var _this;
+
     _classCallCheck(this, ProfileView);
 
-    return _super.apply(this, arguments);
+    _this = _super.call(this);
+    _this.state = {
+      username: "",
+      password: "",
+      email: "",
+      birthday: "",
+      favoriteMovies: [],
+      movies: ""
+    };
+    return _this;
   }
 
   _createClass(ProfileView, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var accessToken = localStorage.getItem('token');
+      this.getUser(accessToken);
+    }
+  }, {
+    key: "getUser",
+    value: function getUser(token) {
+      var _this2 = this;
+
+      var url = 'https://allmymovies.herokuapp.com/users/' + localStorage.getItem('user');
+
+      _axios.default.get(url, {
+        headers: {
+          Authorization: "Bearer ".concat(token)
+        }
+      }).then(function (response) {
+        _this2.setState({
+          username: response.data.Username,
+          password: response.data.Password,
+          email: response.data.Email,
+          birthday: response.data.Birthday,
+          favoriteMovies: response.data.FavoriteMovies
+        });
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this = this;
+      var _this3 = this;
 
       var _this$props = this.props,
           username = _this$props.username,
@@ -41027,13 +41067,14 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
           birthday = _this$props.birthday,
           movies = _this$props.movies,
           onBackClick = _this$props.onBackClick;
+      var favoriteMovies = this.state.favoriteMovies;
       return /*#__PURE__*/_react.default.createElement("div", {
         style: {
           marginTop: '70px'
         }
       }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_navbarView.NavbarView, null)), /*#__PURE__*/_react.default.createElement(_Card.default, {
         style: {
-          width: '25rem'
+          width: '35rem'
         }
       }, /*#__PURE__*/_react.default.createElement(_Card.default.Body, null, /*#__PURE__*/_react.default.createElement(_Card.default.Title, null, "My Profile"), /*#__PURE__*/_react.default.createElement(_Card.default.Text, null, /*#__PURE__*/_react.default.createElement(_ListGroup.default, {
         variant: "flush"
@@ -41057,7 +41098,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
           marginLeft: '5px'
         },
         className: "text-color"
-      }, movies)))), /*#__PURE__*/_react.default.createElement(_Button.default, {
+      }, favoriteMovies)))), /*#__PURE__*/_react.default.createElement(_Button.default, {
         style: {
           margin: '3px'
         },
@@ -41077,7 +41118,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         },
         variant: "danger",
         onClick: function onClick() {
-          _this.handleDelete();
+          _this3.handleDelete();
         }
       }, "Delete"))));
     }
@@ -41087,9 +41128,11 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
 }(_react.default.Component);
 
 exports.ProfileView = ProfileView;
-var _default = ProfileView;
+var _default = ProfileView; // favoriteMovies={movies.filter(movie => userData.FavoriteMovies.includes(movie.Title))}
+// const favoriteMovieList = movies.filter((movie) => {return this.state.favoriteMovies.includes(movie._id)});
+
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","../navbar-view/navbar-view":"components/navbar-view/navbar-view.jsx","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/ListGroup":"../node_modules/react-bootstrap/esm/ListGroup.js","react-bootstrap/ListGroupItem":"../node_modules/react-bootstrap/esm/ListGroupItem.js"}],"components/main-view/main-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","../navbar-view/navbar-view":"components/navbar-view/navbar-view.jsx","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/ListGroup":"../node_modules/react-bootstrap/esm/ListGroup.js","react-bootstrap/ListGroupItem":"../node_modules/react-bootstrap/esm/ListGroupItem.js"}],"components/main-view/main-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -41442,7 +41485,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
             username: _this3.state.user,
             email: localStorage.getItem('email'),
             birthday: localStorage.getItem('birthday'),
-            favoriteMovies: localStorage.getItem('favoriteMovies'),
+            favoriteMovies: _this3.state.favoriteMovies,
             onBackClick: function onBackClick() {
               return history.goBack();
             }

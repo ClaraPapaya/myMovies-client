@@ -155,7 +155,7 @@ export class MainView extends React.Component {
             </Col>
             if (movies.length === 0) return <div className='main-view' />;
 
-            return <ProfileView username={this.state.user} email={localStorage.getItem('email')} birthday={localStorage.getItem('birthday')} favoriteMovies={localStorage.getItem('favoriteMovies')} onBackClick={() => history.goBack()} />
+            return <ProfileView username={this.state.user} email={localStorage.getItem('email')} birthday={localStorage.getItem('birthday')} favoriteMovies={this.state.favoriteMovies} onBackClick={() => history.goBack()} />
           }} />
 
         </Row>
