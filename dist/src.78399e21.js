@@ -41063,6 +41063,25 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
+    key: "removeFavorite",
+    value: function removeFavorite(movie) {
+      var _this3 = this;
+
+      var token = localStorage.getItem('token');
+
+      var url = 'https://allmymovies.herokuapp.com/users/' + localStorage.getItem('user') + '/movies/' + movie._id;
+
+      _axios.default.delete(url, {
+        headers: {
+          Authorization: "Bearer ".concat(token)
+        }
+      }).then(function (response) {
+        alert('This movie was removed.');
+
+        _this3.componentDidMount();
+      });
+    }
+  }, {
     key: "handleDelete",
     value: function handleDelete() {
       var token = localStorage.getItem('token');
@@ -41084,7 +41103,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       var _this$props = this.props,
           username = _this$props.username,
@@ -41130,7 +41149,13 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         return /*#__PURE__*/_react.default.createElement(_Col.default, {
           md: 6,
           key: movie._id
-        }, movie.Title);
+        }, /*#__PURE__*/_react.default.createElement("div", null, movie.Title), /*#__PURE__*/_react.default.createElement(_Button.default, {
+          variant: "outline-danger",
+          size: "sm",
+          onClick: function onClick() {
+            return _this4.removeFavorite(movie);
+          }
+        }, "Remove"));
       })))), /*#__PURE__*/_react.default.createElement(_Button.default, {
         style: {
           margin: '3px'
@@ -41151,7 +41176,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         },
         variant: "danger",
         onClick: function onClick() {
-          _this3.handleDelete();
+          _this4.handleDelete();
         }
       }, "Delete"))));
     }
@@ -41164,7 +41189,7 @@ exports.ProfileView = ProfileView;
 var _default = ProfileView; // code from other repos
 // favoriteMovies={movies.filter(movie => userData.FavoriteMovies.includes(movie.Title))}
 // const favoriteMovieList = movies.filter((movie) => {return this.state.favoriteMovies.includes(movie._id)});
-// <Button variant="dark" onClick={() => this.removeFavorite(movie)}>Remove</Button>
+// <Button variant='dark' onClick={() => this.removeFavorite(movie)}>Remove</Button>
 
 exports.default = _default;
 },{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","../navbar-view/navbar-view":"components/navbar-view/navbar-view.jsx","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Col":"../node_modules/react-bootstrap/esm/Col.js","react-bootstrap/ListGroup":"../node_modules/react-bootstrap/esm/ListGroup.js","react-bootstrap/ListGroupItem":"../node_modules/react-bootstrap/esm/ListGroupItem.js"}],"components/main-view/main-view.scss":[function(require,module,exports) {

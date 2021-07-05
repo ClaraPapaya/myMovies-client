@@ -46,6 +46,19 @@ export class ProfileView extends React.Component {
       });
   }
 
+  removeFavorite(movie) {
+    let token = localStorage.getItem('token');
+    let url = 'https://allmymovies.herokuapp.com/users/' + localStorage.getItem('user') + '/movies/' + movie._id;
+    axios
+      .delete(url, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        alert('This movie was removed.');
+        this.componentDidMount();
+      });
+  }
+
   handleDelete() {
     let token = localStorage.getItem('token');
     let user = localStorage.getItem('user');
@@ -85,8 +98,10 @@ export class ProfileView extends React.Component {
                 {favoriteMovieList.map((movie) => {
                   return (
                     <Col md={6} key={movie._id}>
-                      {movie.Title}
+                      <div>{movie.Title}</div>
+                      <Button variant='outline-danger' size='sm' onClick={() => this.removeFavorite(movie)}>Remove</Button>
                     </Col>
+
                   )
                 })}</ListGroupItem>
 
@@ -106,4 +121,4 @@ export default ProfileView;
 // code from other repos
 // favoriteMovies={movies.filter(movie => userData.FavoriteMovies.includes(movie.Title))}
 // const favoriteMovieList = movies.filter((movie) => {return this.state.favoriteMovies.includes(movie._id)});
-// <Button variant="dark" onClick={() => this.removeFavorite(movie)}>Remove</Button>
+// <Button variant='dark' onClick={() => this.removeFavorite(movie)}>Remove</Button>
