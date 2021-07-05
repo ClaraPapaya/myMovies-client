@@ -40714,20 +40714,24 @@ function RegistrationView(props) {
 
   var handleSubmit = function handleSubmit() {
     e.preventDefaut();
-    var isValid = formValidation(); // Send a request to the server to register a new user
+    console.log(username, password, email, birthday);
+    var isValid = formValidation();
 
-    _axios.default.post('https://allmymovies.herokuapp.com/users', {
-      Username: username,
-      Password: password,
-      Email: email,
-      Birthday: birthday
-    }).then(function (response) {
-      var data = response.data;
-      console.log(data);
-      window.open('/', '_self'); // '_self' is necessary so that the page opens in the current tab
-    }).catch(function (e) {
-      console.log('Error registering the user.');
-    });
+    if (isValid) {
+      // Send a request to the server to register a new user
+      _axios.default.post('https://allmymovies.herokuapp.com/users', {
+        Username: username,
+        Password: password,
+        Email: email,
+        Birthday: birthday
+      }).then(function (response) {
+        var data = response.data;
+        console.log(data);
+        window.open('/', '_self'); // '_self' is necessary so that the page opens in the current tab
+      }).catch(function (e) {
+        console.log('Error registering the user.');
+      });
+    }
   };
 
   var formValidation = function formValidation() {
@@ -40808,7 +40812,7 @@ function RegistrationView(props) {
     to: '/'
   }, /*#__PURE__*/_react.default.createElement(_Button.default, {
     variant: "dark"
-  }, "Back")));
+  }, "Login")));
 } // PropTypes to validate data type input
 
 

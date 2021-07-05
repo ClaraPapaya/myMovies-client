@@ -20,22 +20,26 @@ export function RegistrationView(props) {
 
   const handleSubmit = () => {
     e.preventDefaut();
+    console.log(username, password, email, birthday);
     const isValid = formValidation();
-    // Send a request to the server to register a new user
-    axios.post('https://allmymovies.herokuapp.com/users', {
-      Username: username,
-      Password: password,
-      Email: email,
-      Birthday: birthday
-    })
-      .then(response => {
-        const data = response.data;
-        console.log(data);
-        window.open('/', '_self'); // '_self' is necessary so that the page opens in the current tab
-      })
-      .catch(e => {
-        console.log('Error registering the user.')
-      });
+    if (isValid) {
+      // Send a request to the server to register a new user
+      axios
+        .post('https://allmymovies.herokuapp.com/users', {
+          Username: username,
+          Password: password,
+          Email: email,
+          Birthday: birthday
+        })
+        .then(response => {
+          const data = response.data;
+          console.log(data);
+          window.open('/', '_self'); // '_self' is necessary so that the page opens in the current tab
+        })
+        .catch(e => {
+          console.log('Error registering the user.')
+        });
+    }
   }
 
   const formValidation = () => {
@@ -115,7 +119,7 @@ export function RegistrationView(props) {
       </Button>
 
       <Link to={'/'}>
-        <Button variant='dark'>Back</Button>
+        <Button variant='dark'>Login</Button>
       </Link>
     </Form>
   );
