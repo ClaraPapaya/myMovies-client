@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
+import { Link } from 'react-router-dom';
 
 export class ProfileView extends React.Component {
 
@@ -104,11 +105,12 @@ export class ProfileView extends React.Component {
 
                   )
                 })}</ListGroupItem>
-
             </ListGroup>
           </Card.Text>
           <Button style={{ margin: '3px' }} variant='info' onClick={() => { onBackClick() }}>Back</Button>
-          <Button style={{ margin: '3px' }} variant='info' onClick={() => { }}>Update Profile</Button>
+          <Link to={`/update/${this.state.username}`}>
+            <Button style={{ margin: '3px' }} variant='info'>Edit Profile</Button>
+          </Link>
           <Button style={{ margin: '3px' }} variant='danger' onClick={() => { this.handleDelete() }}>Delete</Button>
         </Card.Body>
       </Card>
@@ -117,8 +119,3 @@ export class ProfileView extends React.Component {
 }
 
 export default ProfileView;
-
-// code from other repos
-// favoriteMovies={movies.filter(movie => userData.FavoriteMovies.includes(movie.Title))}
-// const favoriteMovieList = movies.filter((movie) => {return this.state.favoriteMovies.includes(movie._id)});
-// <Button variant='dark' onClick={() => this.removeFavorite(movie)}>Remove</Button>
