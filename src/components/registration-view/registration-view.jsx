@@ -18,7 +18,7 @@ export function RegistrationView(props) {
   const [passwordError, setPasswordError] = useState({});
   const [emailError, setEmailError] = useState({});
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
     e.preventDefaut();
     console.log(username, password, email, birthday);
     const isValid = formValidation();
@@ -35,8 +35,9 @@ export function RegistrationView(props) {
           const data = response.data;
           console.log(data);
           window.open('/', '_self'); // '_self' is necessary so that the page opens in the current tab
+          props.RegistrationView(data);
         })
-        .catch(e => {
+        .catch((e) => {
           console.log('Error registering the user.')
         });
     }
@@ -133,5 +134,5 @@ RegistrationView.propTypes = {
     Email: PropTypes.string.isRequired,
     Birthday: PropTypes.date
   }),
-  onRegister: PropTypes.func,
+  onRegister: PropTypes.func
 };

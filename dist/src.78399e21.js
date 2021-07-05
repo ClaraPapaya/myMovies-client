@@ -40712,7 +40712,7 @@ function RegistrationView(props) {
       emailError = _useState14[0],
       setEmailError = _useState14[1];
 
-  var handleSubmit = function handleSubmit() {
+  var handleSubmit = function handleSubmit(e) {
     e.preventDefaut();
     console.log(username, password, email, birthday);
     var isValid = formValidation();
@@ -40728,6 +40728,8 @@ function RegistrationView(props) {
         var data = response.data;
         console.log(data);
         window.open('/', '_self'); // '_self' is necessary so that the page opens in the current tab
+
+        props.RegistrationView(data);
       }).catch(function (e) {
         console.log('Error registering the user.');
       });
@@ -41655,7 +41657,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58784" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60262" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
