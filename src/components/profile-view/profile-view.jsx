@@ -4,6 +4,7 @@ import { NavbarView } from '../navbar-view/navbar-view';
 // Bootstrap components
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
 
@@ -66,6 +67,7 @@ export class ProfileView extends React.Component {
   render() {
     const { username, email, birthday, movies, onBackClick } = this.props;
     const { favoriteMovies } = this.state;
+    const favoriteMovieList = movies.filter((movie) => { return favoriteMovies.includes(movie._id) });
 
     return <div style={{ marginTop: '70px', }}>
       <div>
@@ -79,7 +81,15 @@ export class ProfileView extends React.Component {
               <ListGroupItem>Username:<span style={{ marginLeft: '5px' }} className='text-color'>{username}</span></ListGroupItem>
               <ListGroupItem>Email:<span style={{ marginLeft: '5px' }} className='text-color'>{email}</span></ListGroupItem>
               <ListGroupItem>Birthday:<span style={{ marginLeft: '5px' }} className='text-color'>{birthday}</span></ListGroupItem>
-              <ListGroupItem>Favorite Movies:<span style={{ marginLeft: '5px' }} className='text-color'>{favoriteMovies}</span></ListGroupItem>
+              <ListGroupItem>Favorite Movies:<span style={{ marginLeft: '5px' }} className='text-color'></span>
+                {favoriteMovieList.map((movie) => {
+                  return (
+                    <Col md={6} key={movie._id}>
+                      {movie.Title}
+                    </Col>
+                  )
+                })}</ListGroupItem>
+
             </ListGroup>
           </Card.Text>
           <Button style={{ margin: '3px' }} variant='info' onClick={() => { onBackClick() }}>Back</Button>
@@ -96,3 +106,4 @@ export default ProfileView;
 // code from other repos
 // favoriteMovies={movies.filter(movie => userData.FavoriteMovies.includes(movie.Title))}
 // const favoriteMovieList = movies.filter((movie) => {return this.state.favoriteMovies.includes(movie._id)});
+// <Button variant="dark" onClick={() => this.removeFavorite(movie)}>Remove</Button>

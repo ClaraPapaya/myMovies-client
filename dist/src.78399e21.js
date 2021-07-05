@@ -40983,6 +40983,8 @@ var _Card = _interopRequireDefault(require("react-bootstrap/Card"));
 
 var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
 
+var _Col = _interopRequireDefault(require("react-bootstrap/Col"));
+
 var _ListGroup = _interopRequireDefault(require("react-bootstrap/ListGroup"));
 
 var _ListGroupItem = _interopRequireDefault(require("react-bootstrap/ListGroupItem"));
@@ -41091,6 +41093,9 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
           movies = _this$props.movies,
           onBackClick = _this$props.onBackClick;
       var favoriteMovies = this.state.favoriteMovies;
+      var favoriteMovieList = movies.filter(function (movie) {
+        return favoriteMovies.includes(movie._id);
+      });
       return /*#__PURE__*/_react.default.createElement("div", {
         style: {
           marginTop: '70px'
@@ -41121,7 +41126,12 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
           marginLeft: '5px'
         },
         className: "text-color"
-      }, favoriteMovies)))), /*#__PURE__*/_react.default.createElement(_Button.default, {
+      }), favoriteMovieList.map(function (movie) {
+        return /*#__PURE__*/_react.default.createElement(_Col.default, {
+          md: 6,
+          key: movie._id
+        }, movie.Title);
+      })))), /*#__PURE__*/_react.default.createElement(_Button.default, {
         style: {
           margin: '3px'
         },
@@ -41154,9 +41164,10 @@ exports.ProfileView = ProfileView;
 var _default = ProfileView; // code from other repos
 // favoriteMovies={movies.filter(movie => userData.FavoriteMovies.includes(movie.Title))}
 // const favoriteMovieList = movies.filter((movie) => {return this.state.favoriteMovies.includes(movie._id)});
+// <Button variant="dark" onClick={() => this.removeFavorite(movie)}>Remove</Button>
 
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","../navbar-view/navbar-view":"components/navbar-view/navbar-view.jsx","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/ListGroup":"../node_modules/react-bootstrap/esm/ListGroup.js","react-bootstrap/ListGroupItem":"../node_modules/react-bootstrap/esm/ListGroupItem.js"}],"components/main-view/main-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","../navbar-view/navbar-view":"components/navbar-view/navbar-view.jsx","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Col":"../node_modules/react-bootstrap/esm/Col.js","react-bootstrap/ListGroup":"../node_modules/react-bootstrap/esm/ListGroup.js","react-bootstrap/ListGroupItem":"../node_modules/react-bootstrap/esm/ListGroupItem.js"}],"components/main-view/main-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -41509,7 +41520,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
             username: _this3.state.user,
             email: localStorage.getItem('email'),
             birthday: localStorage.getItem('birthday'),
-            favoriteMovies: _this3.state.favoriteMovies,
+            movies: _this3.state.movies,
             onBackClick: function onBackClick() {
               return history.goBack();
             }

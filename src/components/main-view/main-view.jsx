@@ -11,6 +11,7 @@ import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
 import { RegistrationView } from '../registration-view/registration-view';
 import { ProfileView } from '../profile-view/profile-view';
+// import { ProfileUpdate } from '../profile-update/profile-update';
 
 import './main-view.scss';
 // Bootstrap components
@@ -155,9 +156,8 @@ export class MainView extends React.Component {
             </Col>
             if (movies.length === 0) return <div className='main-view' />;
 
-            return <ProfileView username={this.state.user} email={localStorage.getItem('email')} birthday={localStorage.getItem('birthday')} favoriteMovies={this.state.favoriteMovies} onBackClick={() => history.goBack()} />
+            return <ProfileView username={this.state.user} email={localStorage.getItem('email')} birthday={localStorage.getItem('birthday')} movies={this.state.movies} onBackClick={() => history.goBack()} />
           }} />
-
         </Row>
       </Router>
     );
