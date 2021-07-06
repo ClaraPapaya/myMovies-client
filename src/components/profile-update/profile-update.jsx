@@ -76,74 +76,72 @@ export function ProfileUpdate(props) {
     return isValid;
   };
 
-  return (
-    <div>
-      <h1>Update your profile</h1>
-      <Form className='registration-form'>
-        <Form.Group controlId='formBasicUsername'>
-          <Form.Label>Username:</Form.Label>
-          <Form.Control
-            type='text'
-            value={username}
-            placeholder='Username'
-            required
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          {Object.keys(usernameError).map((key) => {
-            return (
-              <div key={key}>
-                {usernameError[key]}
-              </div>
-            );
-          })}
-        </Form.Group>
-        <Form.Group controlId='formBasicPassword'>
-          <Form.Label>Password:</Form.Label>
-          <Form.Control
-            type='password'
-            value={password}
-            placeholder='Password'
-            required
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          {Object.keys(passwordError).map((key) => {
-            return (
-              <div key={key}>
-                {passwordError[key]}
-              </div>
-            );
-          })}
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Birthday:</Form.Label>
-          <Form.Control
-            type='text'
-            value={birthday}
-            onChange={(e) => setBirthday(e.target.value)}
-          />
-        </Form.Group>
-        <Form.Group controlId='formBasicEmail'>
-          <Form.Label>Email:</Form.Label>
-          <Form.Control
-            type='email'
-            value={email}
-            placeholder='email@adress.com'
-            required
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          {Object.keys(emailError).map((key) => {
-            return (
-              <div key={key}>
-                {emailError[key]}
-              </div>
-            );
-          })}
-        </Form.Group>
-        <Link to={`/users`}>
-          <Button style={{ margin: '3px' }} variant='info' type='submit' onClick={handleUpdate}>Save</Button>
-        </Link>
-        <Button style={{ margin: '3px' }} variant='dark' onClick={onBackClick}>Back</Button>
-      </Form>
-    </div>
-  );
+  return <div>
+    <h1>Update your profile</h1>
+    <Form className='registration-form'>
+      <Form.Group controlId='formBasicUsername'>
+        <Form.Label>Username:</Form.Label>
+        <Form.Control
+          type='text'
+          value={username}
+          placeholder='Username'
+          required
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        {Object.keys(usernameError).map((key) => {
+          return (
+            <div key={key}>
+              {usernameError[key]}
+            </div>
+          );
+        })}
+      </Form.Group>
+      <Form.Group controlId='formBasicPassword'>
+        <Form.Label>Password:</Form.Label>
+        <Form.Control
+          type='password'
+          value={password}
+          placeholder='Password'
+          required
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        {Object.keys(passwordError).map((key) => {
+          return (
+            <div key={key}>
+              {passwordError[key]}
+            </div>
+          );
+        })}
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>Birthday:</Form.Label>
+        <Form.Control
+          type='text'
+          value={birthday}
+          onChange={(e) => setBirthday(e.target.value)}
+        />
+      </Form.Group>
+      <Form.Group controlId='formBasicEmail'>
+        <Form.Label>Email:</Form.Label>
+        <Form.Control
+          type='email'
+          value={email}
+          placeholder='email@adress.com'
+          required
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        {Object.keys(emailError).map((key) => {
+          return (
+            <div key={key}>
+              {emailError[key]}
+            </div>
+          );
+        })}
+      </Form.Group>
+      <Link to={`/users`}>
+        <Button style={{ margin: '3px' }} variant='info' type='submit' onClick={handleUpdate}>Save</Button>
+      </Link>
+      <Button style={{ margin: '3px' }} variant='dark' onClick={onBackClick}>Back</Button>
+    </Form>
+  </div>
 }
