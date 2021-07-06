@@ -108,7 +108,7 @@ export class ProfileView extends React.Component {
             </ListGroup>
           </Card.Text>
           <Button style={{ margin: '3px' }} variant='info' onClick={() => { onBackClick() }}>Back</Button>
-          <Link to={`/update/${this.state.username}`}>
+          <Link to='/update/me'>
             <Button style={{ margin: '3px' }} variant='info'>Edit Profile</Button>
           </Link>
           <Button style={{ margin: '3px' }} variant='danger' onClick={() => { this.handleDelete() }}>Delete</Button>

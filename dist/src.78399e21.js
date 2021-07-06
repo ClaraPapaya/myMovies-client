@@ -41169,7 +41169,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
           onBackClick();
         }
       }, "Back"), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-        to: "/update/".concat(this.state.username)
+        to: "/update/me"
       }, /*#__PURE__*/_react.default.createElement(_Button.default, {
         style: {
           margin: '3px'
@@ -41322,9 +41322,9 @@ function ProfileUpdate(props) {
     return isValid;
   };
 
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, "Update your profile"), /*#__PURE__*/_react.default.createElement(_Form.default, {
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_Form.default, {
     className: "registration-form"
-  }, /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
+  }, /*#__PURE__*/_react.default.createElement("h1", null, "Update your profile"), /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
     controlId: "formBasicUsername"
   }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Username:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
     type: "text",
@@ -41389,6 +41389,8 @@ function ProfileUpdate(props) {
     onClick: onBackClick
   }, "Back")));
 }
+
+;
 },{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","axios":"../node_modules/axios/index.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js"}],"components/main-view/main-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
