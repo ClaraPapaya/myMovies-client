@@ -18,7 +18,7 @@ export function RegistrationView(props) {
   const [passwordError, setPasswordError] = useState({});
   const [emailError, setEmailError] = useState({});
 
-  const handleSubmit = (e) => {
+  const handleRegister = (e) => {
     e.preventDefaut();
     console.log(username, password, email, birthday);
     const isValid = formValidation();
@@ -33,9 +33,8 @@ export function RegistrationView(props) {
         })
         .then(response => {
           const data = response.data;
-          console.log(data);
+          console.log('data', data);
           window.open('/', '_self'); // '_self' is necessary so that the page opens in the current tab
-          props.RegistrationView(data);
         })
         .catch((e) => {
           console.log('Error registering the user.')
@@ -116,8 +115,9 @@ export function RegistrationView(props) {
         <Form.Control type='date' onChange={e => setBirthday(e.target.value)} />
       </Form.Group>
 
-      <Button style={{ margin: '3px' }} variant='info' type='submit' onClick={handleSubmit}>Register
-      </Button>
+      <Link to={'/'}>
+        <Button style={{ margin: '3px' }} variant='info' type='submit' onClick={handleRegister}>Register</Button>
+      </Link>
 
       <Link to={'/'}>
         <Button variant='dark'>Login</Button>

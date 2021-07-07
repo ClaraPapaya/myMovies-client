@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 
 import { LoginView } from '../login-view/login-view';
 import { NavbarView } from '../navbar-view/navbar-view';

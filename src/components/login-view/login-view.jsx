@@ -19,10 +19,11 @@ export function LoginView(props) {
     e.preventDefault();
     console.log(username, password);
     // Send a request to the server for authentication, then call props.onLoggedIn(username)
-    axios.post('https://allmymovies.herokuapp.com/login', {
-      Username: username,
-      Password: password
-    })
+    axios
+      .post('https://allmymovies.herokuapp.com/login', {
+        Username: username,
+        Password: password
+      })
       .then(response => {
         const data = response.data;
         console.log('data', data);

@@ -97,6 +97,7 @@ export function ProfileUpdate(props) {
             );
           })}
         </Form.Group>
+
         <Form.Group controlId='formBasicPassword'>
           <Form.Label>Password:</Form.Label>
           <Form.Control
@@ -114,6 +115,7 @@ export function ProfileUpdate(props) {
             );
           })}
         </Form.Group>
+
         <Form.Group>
           <Form.Label>Birthday:</Form.Label>
           <Form.Control
@@ -122,6 +124,7 @@ export function ProfileUpdate(props) {
             onChange={(e) => setBirthday(e.target.value)}
           />
         </Form.Group>
+
         <Form.Group controlId='formBasicEmail'>
           <Form.Label>Email:</Form.Label>
           <Form.Control
@@ -139,6 +142,7 @@ export function ProfileUpdate(props) {
             );
           })}
         </Form.Group>
+
         <Link to={`/users`}>
           <Button style={{ margin: '3px' }} variant='info' type='submit' onClick={handleUpdate}>Save</Button>
         </Link>

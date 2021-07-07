@@ -40712,7 +40712,7 @@ function RegistrationView(props) {
       emailError = _useState14[0],
       setEmailError = _useState14[1];
 
-  var handleSubmit = function handleSubmit(e) {
+  var handleRegister = function handleRegister(e) {
     e.preventDefaut();
     console.log(username, password, email, birthday);
     var isValid = formValidation();
@@ -40726,10 +40726,8 @@ function RegistrationView(props) {
         Birthday: birthday
       }).then(function (response) {
         var data = response.data;
-        console.log(data);
+        console.log('data', data);
         window.open('/', '_self'); // '_self' is necessary so that the page opens in the current tab
-
-        props.RegistrationView(data);
       }).catch(function (e) {
         console.log('Error registering the user.');
       });
@@ -40803,14 +40801,16 @@ function RegistrationView(props) {
     onChange: function onChange(e) {
       return setBirthday(e.target.value);
     }
-  })), /*#__PURE__*/_react.default.createElement(_Button.default, {
+  })), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    to: '/'
+  }, /*#__PURE__*/_react.default.createElement(_Button.default, {
     style: {
       margin: '3px'
     },
     variant: "info",
     type: "submit",
-    onClick: handleSubmit
-  }, "Register"), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    onClick: handleRegister
+  }, "Register")), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     to: '/'
   }, /*#__PURE__*/_react.default.createElement(_Button.default, {
     variant: "dark"
@@ -41879,7 +41879,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60262" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50999" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
