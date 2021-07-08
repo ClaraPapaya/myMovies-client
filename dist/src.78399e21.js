@@ -41618,8 +41618,8 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           if (movies.length === 0) return /*#__PURE__*/_react.default.createElement("div", {
             className: "main-view"
           });
-          return movies.map(function (m) {
-            return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_navbarView.NavbarView, null), /*#__PURE__*/_react.default.createElement(_Col.default, {
+          return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_navbarView.NavbarView, null), movies.map(function (m) {
+            return /*#__PURE__*/_react.default.createElement(_Col.default, {
               md: 4,
               key: m._id,
               style: {
@@ -41627,8 +41627,8 @@ var MainView = /*#__PURE__*/function (_React$Component) {
               }
             }, /*#__PURE__*/_react.default.createElement(_movieCard.MovieCard, {
               movie: m
-            })));
-          });
+            }));
+          }));
         }
       }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
         path: "/register",
