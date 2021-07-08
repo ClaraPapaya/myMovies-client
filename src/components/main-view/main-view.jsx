@@ -1,10 +1,13 @@
 import axios from 'axios';
 import React from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import { setMovies } from '../../actions/actions';
+import MoviesList from '../movies-list/movies-list';
 
 import { LoginView } from '../login-view/login-view';
 import { NavbarView } from '../navbar-view/navbar-view';
-import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
@@ -17,12 +20,11 @@ import './main-view.scss';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-export class MainView extends React.Component {
+class MainView extends React.Component {
   constructor() {
     super();
     // Inital state is set to null
     this.state = {
-      movies: [],
       user: null
     };
   }
@@ -43,9 +45,7 @@ export class MainView extends React.Component {
     })
       .then(response => {
         // Assign the result to the state
-        this.setState({
-          movies: response.data
-        });
+        this.props.setMovies(response.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -77,7 +77,8 @@ export class MainView extends React.Component {
   }
 
   render() {
-    const { movies, user } = this.state;
+    const { movies } = this.props;
+    const { user } = this.state;
     return (
       <Router>
         <Row className='main-view justify-content-md-center'>
@@ -93,7 +94,7 @@ export class MainView extends React.Component {
               <NavbarView />
               {movies.map(m => (
                 <Col md={4} key={m._id} style={{ marginTop: '70px', }}>
-                  <MovieCard movie={m} />
+                  <MoviesList movies={movies} />
                 </Col>
               ))}
             </div>
@@ -172,3 +173,9 @@ export class MainView extends React.Component {
     );
   }
 }
+
+let mapStateToProps = state => {
+  return { movies: state.movies }
+}
+
+export default connect(mapStateToProps, { setMovies })(MainView);
