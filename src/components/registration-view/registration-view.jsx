@@ -19,7 +19,7 @@ export function RegistrationView(props) {
   const [emailError, setEmailError] = useState({});
 
   const handleRegister = (e) => {
-    e.preventDefaut();
+    e.preventDefault();
     console.log(username, password, email, birthday);
     const isValid = formValidation();
     if (isValid) {
