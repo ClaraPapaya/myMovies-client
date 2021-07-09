@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 import { setMovies } from '../../actions/actions';
 import MoviesList from '../movies-list/movies-list';
+import VisibilityFilterInput from '../visibility-filter-input/visibility-filter-input';
 
 import { LoginView } from '../login-view/login-view';
 import { NavbarView } from '../navbar-view/navbar-view';
