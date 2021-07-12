@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { devToolsEnhancer } from 'redux-devtools-extension';
 import moviesApp from './reducers/reducers';
 
-import { MainView } from './components/main-view/main-view';
+import MainView from './components/main-view/main-view';
 
 // Import statement to indicate the need to bundle './index.scss'
 import './index.scss';
@@ -26,7 +26,7 @@ class MyMoviesApplication extends React.Component {
   }
 }
 
-// Finds the root of the app
+// Find the root of the app
 const container = document.getElementsByClassName('app-container')[0];
 
 // Tells React to render the app in the root DOM element
