@@ -7,4 +7,4 @@ Using React, build the client-side for an application called AllmyMovies based o
 The entry file for Parcel is index.html.
  
 ## Dependencies:
-Parcel, React, React-Bootstrap
+Parcel, React, React-Bootstrap, React Redux
