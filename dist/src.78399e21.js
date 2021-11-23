@@ -45142,11 +45142,11 @@ var _reactDom = _interopRequireDefault(require("react-dom"));
 
 var _Container = _interopRequireDefault(require("react-bootstrap/Container"));
 
-var _redux = _interopRequireDefault(require("redux"));
+var _redux = require("redux");
 
-var _reactRedux = _interopRequireDefault(require("react-redux"));
+var _reactRedux = require("react-redux");
 
-var _reduxDevtoolsExtension = _interopRequireDefault(require("redux-devtools-extension"));
+var _reduxDevtoolsExtension = require("redux-devtools-extension");
 
 var _reducers = _interopRequireDefault(require("./reducers/reducers"));
 
@@ -45178,7 +45178,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-var store = (0, _redux.default)(_reducers.default, (0, _reduxDevtoolsExtension.default)()); // Main component (will eventually use all the others)
+var store = (0, _redux.createStore)(_reducers.default, (0, _reduxDevtoolsExtension.devToolsEnhancer)()); // Main component (will eventually use all the others)
 
 var MyMoviesApplication = /*#__PURE__*/function (_React$Component) {
   _inherits(MyMoviesApplication, _React$Component);
@@ -45194,7 +45194,7 @@ var MyMoviesApplication = /*#__PURE__*/function (_React$Component) {
   _createClass(MyMoviesApplication, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/_react.default.createElement(_reactRedux.default, {
+      return /*#__PURE__*/_react.default.createElement(_reactRedux.Provider, {
         store: store
       }, /*#__PURE__*/_react.default.createElement(_Container.default, null, /*#__PURE__*/_react.default.createElement(_mainView.default, null)));
     }
@@ -45235,7 +45235,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51667" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54120" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
