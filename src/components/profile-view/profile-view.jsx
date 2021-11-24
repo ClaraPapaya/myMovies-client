@@ -102,7 +102,6 @@ export class ProfileView extends React.Component {
                       <div>{movie.Title}</div>
                       <Button variant='outline-danger' size='sm' onClick={() => this.removeFavorite(movie)}>Remove</Button>
                     </Col>
-
                   )
                 })}</ListGroupItem>
             </ListGroup>
