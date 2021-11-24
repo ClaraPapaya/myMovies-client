@@ -2,7 +2,7 @@
   "name": "mymovies-client",
   "version": "1.0.0",
   "description": "client-side app for myMoviesDB",
-  "main": "src/index.html",
+  "default": "src/index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel src/index.html"
@@ -22,6 +22,6 @@
     "redux-devtools-extension": "^2.13.9"
   },
   "devDependencies": {
-    "@parcel/transformer-sass": "^2.0.1"
+    "@parcel/transformer-sass": "^2.0.0-rc.0"
   }
 }
