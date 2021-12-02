@@ -4,7 +4,7 @@ import { MovieCard } from '../movie-card/movie-card';
 import VisibilityFilterInput from '../visibility-filter-input/visibility-filter-input';
 import './movies-list.scss';
 // Bootstrap components
-import { Col, Row } from 'react-bootstrap/Col';
+import { Col } from 'react-bootstrap/Col';
 
 const mapStateToProps = state => {
   const { visibilityFilter } = state;
