@@ -5,6 +5,7 @@ import VisibilityFilterInput from '../visibility-filter-input/visibility-filter-
 import './movies-list.scss';
 // Bootstrap components
 import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 const mapStateToProps = state => {
   const { visibilityFilter } = state;
@@ -22,14 +23,16 @@ function MoviesList(props) {
   if (!movies) return <div className='main-view' />;
 
   return <>
-    <Col md={12} style={{ margin: '1em' }}>
-      <VisibilityFilterInput visibilityFilter={visibilityFilter} />
-    </Col>
-    {filteredMovies.map(m => (
-      <Col lg={3} md={4} sm={6} key={m._id}>
-        <MovieCard movie={m} />
+    <Row>
+      <Col md={12} style={{ margin: '1em' }}>
+        <VisibilityFilterInput visibilityFilter={visibilityFilter} />
       </Col>
-    ))}
+      {filteredMovies.map(m => (
+        <Col md={4} key={m._id}>
+          <MovieCard movie={m} />
+        </Col>
+      ))}
+    </Row>
   </>
 };
 
