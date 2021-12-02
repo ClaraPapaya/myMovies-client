@@ -45,11 +45,15 @@ class MainView extends React.Component {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(response => {
-        // Assign the result to the state
-        this.props.setMovies(response.data);
+        if (response.status === 401) {
+          this.onLoggedOut();
+        }
+        else {
+          // Assign the result to the state
+          this.props.setMovies(response.data);
+        }
       })
       .catch(function (error) {
-        onLoggedOut();
         console.log(error);
       });
 
