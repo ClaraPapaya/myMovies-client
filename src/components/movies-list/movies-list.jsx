@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { MovieCard } from '../movie-card/movie-card';
 import VisibilityFilterInput from '../visibility-filter-input/visibility-filter-input';
-import '.movies-list.scss';
+import './movies-list.scss';
 // Bootstrap components
 import Col from 'react-bootstrap/Col';
 
