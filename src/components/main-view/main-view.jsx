@@ -49,8 +49,10 @@ class MainView extends React.Component {
         this.props.setMovies(response.data);
       })
       .catch(function (error) {
-        console.log(error);
+        onLoggedOut();
+        console.dir(error);
       });
+
   }
 
   // To connect to login-view function component, if successful log in, it updates thes 'user' property in the state

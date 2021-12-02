@@ -34912,7 +34912,7 @@ class ProfileView extends _reactDefault.default.Component {
                                 },
                                 __source: {
                                     fileName: "src/components/profile-view/profile-view.jsx",
-                                    lineNumber: 110
+                                    lineNumber: 109
                                 },
                                 __self: this,
                                 children: "Back"
@@ -34921,7 +34921,7 @@ class ProfileView extends _reactDefault.default.Component {
                                 to: "/update/me",
                                 __source: {
                                     fileName: "src/components/profile-view/profile-view.jsx",
-                                    lineNumber: 111
+                                    lineNumber: 110
                                 },
                                 __self: this,
                                 children: /*#__PURE__*/ _jsxRuntime.jsx(_buttonDefault.default, {
@@ -34931,7 +34931,7 @@ class ProfileView extends _reactDefault.default.Component {
                                     variant: "info",
                                     __source: {
                                         fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 112
+                                        lineNumber: 111
                                     },
                                     __self: this,
                                     children: "Edit Profile"
@@ -34947,7 +34947,7 @@ class ProfileView extends _reactDefault.default.Component {
                                 },
                                 __source: {
                                     fileName: "src/components/profile-view/profile-view.jsx",
-                                    lineNumber: 114
+                                    lineNumber: 113
                                 },
                                 __self: this,
                                 children: "Delete"
