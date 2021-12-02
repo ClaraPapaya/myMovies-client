@@ -50,7 +50,7 @@ class MainView extends React.Component {
       })
       .catch(function (error) {
         onLoggedOut();
-        console.dir(error);
+        console.log(error);
       });
 
   }
