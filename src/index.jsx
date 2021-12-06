@@ -12,7 +12,7 @@ import './index.scss';
 
 const store = createStore(moviesApp, devToolsEnhancer());
 
-// Main component (will eventually use all the others)
+// Main component
 class MyMoviesApplication extends React.Component {
   render() {
     return (
