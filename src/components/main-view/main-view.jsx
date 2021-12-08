@@ -13,7 +13,7 @@ import { MovieView } from '../movie-view/movie-view';
 import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
 import { RegistrationView } from '../registration-view/registration-view';
-import { ProfileView } from '../profile-view/profile-view';
+import ProfileView from '../profile-view/profile-view';
 import { ProfileUpdate } from '../profile-update/profile-update';
 
 import './main-view.scss';
@@ -99,7 +99,7 @@ class MainView extends React.Component {
             return <div>
               <NavbarView />
               <Col style={{ marginTop: '70px', }}>
-                <MoviesList movies={movies} />
+                <MoviesList />
               </Col>
             </div>
           }} />
@@ -158,7 +158,7 @@ class MainView extends React.Component {
             </Col>
             if (movies.length === 0) return <div className='main-view' />;
 
-            return <ProfileView username={this.state.user} email={localStorage.getItem('email')} birthday={localStorage.getItem('birthday')} movies={this.state.movies} onBackClick={() => history.goBack()} />
+            return <ProfileView username={this.state.user} email={localStorage.getItem('email')} birthday={localStorage.getItem('birthday')} onBackClick={() => history.goBack()} />
           }} />
 
           <Route path='/update/me' render={({ history }) => {

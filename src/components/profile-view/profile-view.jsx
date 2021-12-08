@@ -1,15 +1,17 @@
 import React from 'react';
 import axios from 'axios';
 import { NavbarView } from '../navbar-view/navbar-view';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 // Bootstrap components
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
-import { Link } from 'react-router-dom';
 
-export class ProfileView extends React.Component {
+
+class ProfileView extends React.Component {
 
   constructor() {
     super();
@@ -18,8 +20,7 @@ export class ProfileView extends React.Component {
       password: '',
       email: '',
       birthday: '',
-      favoriteMovies: [],
-      movies: ''
+      favoriteMovies: []
     }
   }
 
@@ -117,4 +118,8 @@ export class ProfileView extends React.Component {
   }
 }
 
-export default ProfileView;
+const mapStateToProps = state => {
+  const { movies } = state;
+  return { movies };
+};
+export default connect(mapStateToProps)(ProfileView);
