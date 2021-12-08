@@ -69,8 +69,7 @@ class MainView extends React.Component {
     localStorage.setItem('user', authData.user.Username);
     localStorage.setItem('email', authData.user.Email);
     localStorage.setItem('birthday', authData.user.Birthday);
-    localStorage.setItem('favoriteMovies', auth.Data.user.FavoriteMovies);
-    this.getMovies(authData.token);
+    localStorage.setItem('favoriteMovies', authData.user.FavoriteMovies);
   }
 
   // to enable user to logout and go back to welcome page
@@ -178,7 +177,7 @@ class MainView extends React.Component {
   }
 }
 
-let mapStateToProps = state => {
+const mapStateToProps = state => {
   return { movies: state.movies }
 }
 
