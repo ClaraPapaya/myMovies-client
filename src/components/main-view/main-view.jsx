@@ -98,7 +98,7 @@ class MainView extends React.Component {
             if (movies.length === 0) return <div className='main-view' />;
             return <div>
               <NavbarView />
-              <Col md={4} style={{ marginTop: '70px', }}>
+              <Col style={{ marginTop: '70px', }}>
                 <MoviesList movies={movies} />
               </Col>
             </div>

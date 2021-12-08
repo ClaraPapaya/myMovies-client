@@ -12,7 +12,7 @@ export class MovieCard extends React.Component {
     const { movie } = this.props;
     return (
       <Card style={{ marginTop: '70px' }}>
-        <Card.Img variant='top' src={movie.ImagePath} />
+        <Card.Img variant='top' src={movie.ImagePath} as='img' crossOrigin='true' />
         <Card.Body>
           <Card.Title>{movie.Title}</Card.Title>
           <Card.Text>{movie.Description}</Card.Text>
