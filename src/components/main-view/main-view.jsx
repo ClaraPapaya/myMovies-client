@@ -48,9 +48,14 @@ class MainView extends React.Component {
         // Assign the result to the state
         this.props.setMovies(response.data);
       })
-      .catch(function (error) {
+      .catch(error => {
+        this.setState({
+          user: null
+        });
+        localStorage.clear();
         console.log(error);
       });
+
   }
 
   // To connect to login-view function component, if successful log in, it updates thes 'user' property in the state
@@ -87,17 +92,15 @@ class MainView extends React.Component {
           <Route exact path='/' render={() => {
             if (!user) return (
               <Col style={{ marginTop: '70px', }}>
-                <h1>All My Movies</h1>
+                <h1>Welcome to My Movies!</h1>
                 <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
               </Col>)
             if (movies.length === 0) return <div className='main-view' />;
             return <div>
               <NavbarView />
-              {movies.map(m => (
-                <Col md={4} key={m._id} style={{ marginTop: '70px', }}>
-                  <MoviesList movies={movies} />
-                </Col>
-              ))}
+              <Col style={{ marginTop: '70px', }}>
+                <MoviesList movies={movies} />
+              </Col>
             </div>
           }} />
 
@@ -118,7 +121,7 @@ class MainView extends React.Component {
             </Row>
             if (movies.length === 0) return <div className='main-view' />;
             return (
-              <Col md={8}>
+              <Col md={6} xs={8}>
                 <MovieView movie={movies.find(m => m._id === match.params.movieId)} onBackClick={() => history.goBack()} />
               </Col>
             )
