@@ -3,7 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { setMovies } from '../../actions/actions';
+import { setMovies, setUser } from '../../actions/actions';
 import MoviesList from '../movies-list/movies-list';
 import VisibilityFilterInput from '../visibility-filter-input/visibility-filter-input';
 
@@ -61,15 +61,7 @@ class MainView extends React.Component {
   // To connect to login-view function component, if successful log in, it updates thes 'user' property in the state
   onLoggedIn(authData) {
     console.log(authData);
-    this.setState({
-      user: authData.user.Username
-    });
-
-    localStorage.setItem('token', authData.token);
-    localStorage.setItem('user', authData.user.Username);
-    localStorage.setItem('email', authData.user.Email);
-    localStorage.setItem('birthday', authData.user.Birthday);
-    localStorage.setItem('favoriteMovies', authData.user.FavoriteMovies);
+    this.props.setUser(response.data);
   }
 
   // to enable user to logout and go back to welcome page
