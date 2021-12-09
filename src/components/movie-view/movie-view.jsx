@@ -4,7 +4,6 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { NavbarView } from '../navbar-view/navbar-view';
 import { connect } from 'react-redux';
-import { setUser } from '../../actions/actions';
 import './movie-view.scss';
 // Bootstrap components
 import Button from 'react-bootstrap/Button';
@@ -12,24 +11,18 @@ import Button from 'react-bootstrap/Button';
 
 class MovieView extends React.Component {
 
-  constructor() {
-    super();
-    this.state = {};
-  }
-
   addFavorite(movie) {
     let token = localStorage.getItem('token');
-    let url = 'https://allmymovies.herokuapp.com/users/' + this.props.setUser() + '/movies/' + movie._id;
+    let url = 'https://allmymovies.herokuapp.com/users/' + this.props.user.Username + '/movies/' + movie._id;
     console.log(token);
-
     axios
       .post(url, '', {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
         console.log(response);
-        window.open('/users/me', '_self');
         alert('Added to Favorite Movies!');
+        window.open('/users/me', '_self');
       });
   }
 
@@ -79,4 +72,4 @@ const mapStateToProps = state => {
   return { user: state.user }
 }
 
-export default connect(mapStateToProps, { setUser })(MovieView);
+export default connect(mapStateToProps)(MovieView);
