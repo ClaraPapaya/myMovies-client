@@ -21,9 +21,9 @@ class ProfileView extends React.Component {
       .delete(url, {
         headers: { Authorization: `Bearer ${token}` },
       })
-      .then((response) => {
+      .then(() => {
         alert('This movie was removed.');
-        this.componentDidMount();
+        window.open('/users/me', '_self');
       });
   }
 
