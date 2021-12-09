@@ -3,31 +3,26 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { NavbarView } from '../navbar-view/navbar-view';
+import { connect } from 'react-redux';
 import './movie-view.scss';
 // Bootstrap components
 import Button from 'react-bootstrap/Button';
 
 
-export class MovieView extends React.Component {
-
-  constructor() {
-    super();
-    this.state = {};
-  }
+class MovieView extends React.Component {
 
   addFavorite(movie) {
     let token = localStorage.getItem('token');
-    let url = 'https://allmymovies.herokuapp.com/users/' + localStorage.getItem('user') + '/movies/' + movie._id;
+    let url = 'https://allmymovies.herokuapp.com/users/' + this.props.user.Username + '/movies/' + movie._id;
     console.log(token);
-
     axios
       .post(url, '', {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
         console.log(response);
+        alert('Added to Favorite Movies!');
         window.open('/users/me', '_self');
-        alert('Added to favorite Movies!');
       });
   }
 
@@ -72,3 +67,9 @@ MovieView.propTypes = {
   Director: PropTypes.string,
   Genre: PropTypes.string
 }
+
+const mapStateToProps = state => {
+  return { user: state.user }
+}
+
+export default connect(mapStateToProps)(MovieView);

@@ -8,8 +8,8 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
 const mapStateToProps = state => {
-  const { visibilityFilter } = state;
-  return { visibilityFilter };
+  const { visibilityFilter, movies } = state;
+  return { visibilityFilter, movies };
 };
 
 function MoviesList(props) {

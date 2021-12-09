@@ -1,4 +1,5 @@
 import React from 'react';
+import visibilityFilterInput from '../visibility-filter-input/visibility-filter-input';
 // Bootstrap components
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
@@ -32,9 +33,6 @@ export class NavbarView extends React.Component {
               <Nav.Link href='/'>Home</Nav.Link>
               <Nav.Link href='/users/me'>Profile</Nav.Link>
             </Nav>
-            <Form inline>
-              <Form.Control type='text' placeholder='Search Movies by Title' className='mr-sm-2' />
-            </Form>
             <Button onClick={() => logOut()} variant='light'>Logout</Button>
           </Navbar.Collapse>
         </Navbar>

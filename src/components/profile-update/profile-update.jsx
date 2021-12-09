@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { setUser } from '../../actions/actions';
 // Bootstrap components
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-export function ProfileUpdate(props) {
-  const [username, setUsername] = useState('');
+function ProfileUpdate(props) {
+  const [username, setUsername] = useState(props.user.Username);
   const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
-  const [birthday, setBirthday] = useState('');
+  const [email, setEmail] = useState(props.user.Email);
+  const [birthday, setBirthday] = useState(props.user.Birthday);
 
   const [usernameError, setUsernameError] = useState({});
   const [passwordError, setPasswordError] = useState({});
@@ -20,8 +22,7 @@ export function ProfileUpdate(props) {
   const handleUpdate = (e) => {
     e.preventDefault();
     const isValid = formValidation();
-    const url = 'https://allmymovies.herokuapp.com/users/' + localStorage.getItem('user');
-
+    const url = 'https://allmymovies.herokuapp.com/users/' + props.user.Username;
     if (isValid) {
       axios
         .put(url,
@@ -37,11 +38,9 @@ export function ProfileUpdate(props) {
         )
         .then((response) => {
           const data = response.data;
-          localStorage.setItem('user', data.Username);
-          localStorage.setItem('email', data.Email);
-          localStorage.setItem('birthday', data.Birthday);
+          props.setUser(data);
           alert('Profile updated successfully.');
-          window.open('/', '_self');
+          window.open('/users/me', '_self');
         })
         .catch((e) => {
           console.log(e);
@@ -102,7 +101,6 @@ export function ProfileUpdate(props) {
           <Form.Label>Password:</Form.Label>
           <Form.Control
             type='password'
-            value={password}
             placeholder='Password'
             required
             onChange={(e) => setPassword(e.target.value)}
@@ -114,15 +112,6 @@ export function ProfileUpdate(props) {
               </div>
             );
           })}
-        </Form.Group>
-
-        <Form.Group>
-          <Form.Label>Birthday:</Form.Label>
-          <Form.Control
-            type='text'
-            value={birthday}
-            onChange={(e) => setBirthday(e.target.value)}
-          />
         </Form.Group>
 
         <Form.Group controlId='formBasicEmail'>
@@ -143,6 +132,15 @@ export function ProfileUpdate(props) {
           })}
         </Form.Group>
 
+        <Form.Group>
+          <Form.Label>Birthday:</Form.Label>
+          <Form.Control
+            type='text'
+            value={birthday}
+            onChange={(e) => setBirthday(e.target.value)}
+          />
+        </Form.Group>
+
         <Link to={`/users`}>
           <Button style={{ margin: '3px' }} variant='info' type='submit' onClick={handleUpdate}>Save</Button>
         </Link>
@@ -151,3 +149,9 @@ export function ProfileUpdate(props) {
     </div>
   )
 };
+
+const mapStateToProps = state => {
+  return { user: state.user }
+};
+
+export default connect(mapStateToProps, { setUser })(ProfileUpdate);
