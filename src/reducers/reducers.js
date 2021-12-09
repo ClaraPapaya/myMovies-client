@@ -22,6 +22,7 @@ function movies(state = [], action) {
 function user(state = '', action) {
   switch (action.type) {
     case SET_USER:
+      localStorage.setItem('username', action.value.Username);
       return action.value;
     default:
       return state;
