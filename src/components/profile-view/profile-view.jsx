@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { NavbarView } from '../navbar-view/navbar-view';
 import { connect } from 'react-redux';
-import { setUser } from '../../actions/actions';
+import { setUser, remFav, remUser } from '../../actions/actions';
 import { Link } from 'react-router-dom';
 // Bootstrap components
 import Card from 'react-bootstrap/Card';
@@ -22,8 +22,8 @@ class ProfileView extends React.Component {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then(() => {
+        this.props.remFav(movie._id);
         alert('This movie was removed.');
-        window.open('/users/me', '_self');
       });
   }
 
@@ -36,9 +36,10 @@ class ProfileView extends React.Component {
       )
       .then(() => {
         alert(user + ' was deleted');
+        this.props.remUser(true);
         localStorage.removeItem('user');
         localStorage.removeItem('token');
-        window.location.pathname = '/';
+        window.open('/#', '_self');
       })
       .catch(function (error) {
         console.log(error);
@@ -49,7 +50,7 @@ class ProfileView extends React.Component {
     const { Username, Email, Birthday, FavoriteMovies } = this.props.user;
     const { movies, onBackClick } = this.props;
     const favoriteMovieList = movies.filter((movie) => {
-      return FavoriteMovies.includes(movie._id)
+      return this.props.FavoriteMovies.includes(movie._id)
     });
 
     return <div style={{ marginTop: '70px', }}>
@@ -68,7 +69,7 @@ class ProfileView extends React.Component {
                 {favoriteMovieList.map((movie) => {
                   return (
                     <Col md={6} key={movie._id}>
-                      <div>{movie.Title}</div>
+                      <h6>{movie.Title}</h6>
                       <Button variant='outline-danger' size='sm' onClick={() => this.removeFavorite(movie)}>Remove</Button>
                     </Col>
                   )
@@ -88,6 +89,6 @@ class ProfileView extends React.Component {
 
 const mapStateToProps = state => {
   const { movies, user } = state;
-  return { movies, user };
+  return { movies, user, FavoriteMovies: user.FavoriteMovies };
 };
-export default connect(mapStateToProps, { setUser })(ProfileView);
+export default connect(mapStateToProps, { setUser, remFav, remUser })(ProfileView);

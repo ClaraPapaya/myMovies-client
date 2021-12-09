@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React from 'react';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { HashRouter as Router, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setMovies, setUser } from '../../actions/actions';
 import MoviesList from '../movies-list/movies-list';
@@ -62,6 +62,7 @@ class MainView extends React.Component {
   onLoggedIn(authData) {
     console.log(authData);
     this.props.setUser(authData.user);
+    this.getMovies(authData.token);
     localStorage.setItem('token', authData.token);
     localStorage.setItem('username', authData.user.Username);
     localStorage.setItem('email', authData.user.Email);

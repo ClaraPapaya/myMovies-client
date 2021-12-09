@@ -28,7 +28,7 @@ export function LoginView(props) {
         const data = response.data;
         console.log('data', data);
         props.onLoggedIn(data);
-        window.location.replace('/');
+        window.open('/#', '_self');
       })
       .catch(e => {
         console.log('no such user')

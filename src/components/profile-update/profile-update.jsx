@@ -40,7 +40,7 @@ function ProfileUpdate(props) {
           const data = response.data;
           props.setUser(data);
           alert('Profile updated successfully.');
-          window.open('/users/me', '_self');
+          window.open('/#users/me', '_self');
         })
         .catch((e) => {
           console.log(e);

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { NavbarView } from '../navbar-view/navbar-view';
 import { connect } from 'react-redux';
+import { addFav } from '../../actions/actions';
 import './movie-view.scss';
 // Bootstrap components
 import Button from 'react-bootstrap/Button';
@@ -21,8 +22,9 @@ class MovieView extends React.Component {
       })
       .then((response) => {
         console.log(response);
+        this.props.addFav(movie._id);
         alert('Added to Favorite Movies!');
-        window.open('/users/me', '_self');
+        window.open('/#users/me', '_self');
       });
   }
 
@@ -72,4 +74,4 @@ const mapStateToProps = state => {
   return { user: state.user }
 }
 
-export default connect(mapStateToProps)(MovieView);
+export default connect(mapStateToProps, { addFav })(MovieView);

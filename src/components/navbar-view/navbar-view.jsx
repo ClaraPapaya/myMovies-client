@@ -1,11 +1,9 @@
 import React from 'react';
-import visibilityFilterInput from '../visibility-filter-input/visibility-filter-input';
 // Bootstrap components
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 
 let logOut = function () {
   localStorage.removeItem('token');
@@ -26,12 +24,12 @@ export class NavbarView extends React.Component {
     return (
       <Container>
         <Navbar bg='light' expand='lg' fixed='top'>
-          <Navbar.Brand href='/'>All My Movies</Navbar.Brand>
+          <Navbar.Brand href='/#'>My Movies</Navbar.Brand>
           <Navbar.Toggle area-controls='responsive-navbar-nav' />
           <Navbar.Collapse id='responsive-navbar-nav'>
             <Nav activeKey='/' className='mr-auto' >
-              <Nav.Link href='/'>Home</Nav.Link>
-              <Nav.Link href='/users/me'>Profile</Nav.Link>
+              <Nav.Link href='/#'>Home</Nav.Link>
+              <Nav.Link href='/#users/me'>Profile</Nav.Link>
             </Nav>
             <Button onClick={() => logOut()} variant='light'>Logout</Button>
           </Navbar.Collapse>
