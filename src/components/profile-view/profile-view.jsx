@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { NavbarView } from '../navbar-view/navbar-view';
 import { connect } from 'react-redux';
+import { setUser } from '../../actions/actions';
 import { Link } from 'react-router-dom';
 // Bootstrap components
 import Card from 'react-bootstrap/Card';
@@ -13,44 +14,9 @@ import ListGroupItem from 'react-bootstrap/ListGroupItem';
 
 class ProfileView extends React.Component {
 
-  constructor() {
-    super();
-    this.state = {
-      username: '',
-      password: '',
-      email: '',
-      birthday: '',
-      favoriteMovies: []
-    }
-  }
-
-  componentDidMount() {
-    let accessToken = localStorage.getItem('token');
-    this.getUser(accessToken);
-  }
-
-  getUser(token) {
-    let url =
-      'https://allmymovies.herokuapp.com/users/' +
-      localStorage.getItem('user');
-    axios
-      .get(url, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((response) => {
-        this.setState({
-          username: response.data.Username,
-          password: response.data.Password,
-          email: response.data.Email,
-          birthday: response.data.Birthday,
-          favoriteMovies: response.data.FavoriteMovies
-        });
-      });
-  }
-
   removeFavorite(movie) {
     let token = localStorage.getItem('token');
-    let url = 'https://allmymovies.herokuapp.com/users/' + localStorage.getItem('user') + '/movies/' + movie._id;
+    let url = 'https://allmymovies.herokuapp.com/users/' + this.props.user.Username + '/movies/' + movie._id;
     axios
       .delete(url, {
         headers: { Authorization: `Bearer ${token}` },
@@ -63,7 +29,7 @@ class ProfileView extends React.Component {
 
   handleDelete() {
     let token = localStorage.getItem('token');
-    let user = localStorage.getItem('user');
+    let user = this.props.user.Username;
     axios
       .delete(
         `https://allmymovies.herokuapp.com/users/${user}`, { headers: { Authorization: `Bearer ${token}` } }
@@ -80,9 +46,11 @@ class ProfileView extends React.Component {
   }
 
   render() {
-    const { username, email, birthday, movies, onBackClick } = this.props;
-    const { favoriteMovies } = this.state;
-    const favoriteMovieList = movies.filter((movie) => { return favoriteMovies.includes(movie._id) });
+    const { Username, Email, Birthday, FavoriteMovies } = this.props.user;
+    const { movies, onBackClick } = this.props;
+    const favoriteMovieList = movies.filter((movie) => {
+      return FavoriteMovies.includes(movie._id)
+    });
 
     return <div style={{ marginTop: '70px', }}>
       <div>
@@ -93,9 +61,9 @@ class ProfileView extends React.Component {
           <Card.Title>My Profile</Card.Title>
           <Card.Text>
             <ListGroup variant='flush'>
-              <ListGroupItem>Username:<span style={{ marginLeft: '5px' }} className='text-color'>{username}</span></ListGroupItem>
-              <ListGroupItem>Email:<span style={{ marginLeft: '5px' }} className='text-color'>{email}</span></ListGroupItem>
-              <ListGroupItem>Birthday:<span style={{ marginLeft: '5px' }} className='text-color'>{birthday}</span></ListGroupItem>
+              <ListGroupItem>Username:<span style={{ marginLeft: '5px' }} className='text-color'>{Username}</span></ListGroupItem>
+              <ListGroupItem>Email:<span style={{ marginLeft: '5px' }} className='text-color'>{Email}</span></ListGroupItem>
+              <ListGroupItem>Birthday:<span style={{ marginLeft: '5px' }} className='text-color'>{Birthday}</span></ListGroupItem>
               <ListGroupItem>Favorite Movies:<span style={{ marginLeft: '5px' }} className='text-color'></span>
                 {favoriteMovieList.map((movie) => {
                   return (
@@ -119,7 +87,7 @@ class ProfileView extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const { movies } = state;
-  return { movies };
+  const { movies, user } = state;
+  return { movies, user };
 };
-export default connect(mapStateToProps)(ProfileView);
+export default connect(mapStateToProps, { setUser })(ProfileView);

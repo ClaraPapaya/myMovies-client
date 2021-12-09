@@ -2,11 +2,8 @@ import axios from 'axios';
 import React from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-
 import { setMovies, setUser } from '../../actions/actions';
 import MoviesList from '../movies-list/movies-list';
-import VisibilityFilterInput from '../visibility-filter-input/visibility-filter-input';
-
 import { LoginView } from '../login-view/login-view';
 import { NavbarView } from '../navbar-view/navbar-view';
 import { MovieView } from '../movie-view/movie-view';
@@ -22,22 +19,29 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 class MainView extends React.Component {
-  constructor() {
-    super();
-    // Inital state is set to null
-    this.state = {
-      user: null
-    };
-  }
 
   componentDidMount() {
     let accessToken = localStorage.getItem('token');
+    let user = localStorage.getItem('username');
+    if (user !== null && accessToken !== null) {
+      this.getUser(user, accessToken);
+    }
     if (accessToken !== null) {
-      this.setState({
-        user: localStorage.getItem('user')
-      });
       this.getMovies(accessToken);
     }
+  }
+
+  getUser(username, token) {
+    let url =
+      'https://allmymovies.herokuapp.com/users/' +
+      username
+    axios
+      .get(url, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        this.props.setUser(response.data);
+      });
   }
 
   getMovies(token) {
@@ -45,37 +49,35 @@ class MainView extends React.Component {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(response => {
-        // Assign the result to the state
         this.props.setMovies(response.data);
       })
       .catch(error => {
-        this.setState({
-          user: null
-        });
         localStorage.clear();
         console.log(error);
       });
-
   }
 
-  // To connect to login-view function component, if successful log in, it updates thes 'user' property in the state
+
+  // to connect to login-view function component, if successful log in, it updates thes 'user' property in the state
   onLoggedIn(authData) {
     console.log(authData);
-    this.props.setUser(response.data);
+    this.props.setUser(authData.user);
+    localStorage.setItem('token', authData.token);
+    localStorage.setItem('username', authData.user.Username);
+    localStorage.setItem('email', authData.user.Email);
+    localStorage.setItem('birthday', authData.user.Birthday);
+    localStorage.setItem('favoriteMovies', authData.user.FavoriteMovies);
   }
 
   // to enable user to logout and go back to welcome page
   onLoggedOut() {
     console.log('logout successful');
-    this.setState({
-      user: null
-    });
     localStorage.clear();
   }
 
   render() {
     const { movies } = this.props;
-    const { user } = this.state;
+    const { user } = this.props;
     return (
       <Router>
         <Row className='main-view justify-content-md-center'>
@@ -149,7 +151,7 @@ class MainView extends React.Component {
             </Col>
             if (movies.length === 0) return <div className='main-view' />;
 
-            return <ProfileView username={this.state.user} email={localStorage.getItem('email')} birthday={localStorage.getItem('birthday')} onBackClick={() => history.goBack()} />
+            return <ProfileView onBackClick={() => history.goBack()} />
           }} />
 
           <Route path='/update/me' render={({ history }) => {
@@ -170,7 +172,10 @@ class MainView extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return { movies: state.movies }
+  return {
+    movies: state.movies,
+    user: state.user
+  }
 }
 
-export default connect(mapStateToProps, { setMovies })(MainView);
+export default connect(mapStateToProps, { setMovies, setUser })(MainView);
